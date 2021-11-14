@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FurnitureStoreApp.Viewmodel.Base
 {
-    class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
 

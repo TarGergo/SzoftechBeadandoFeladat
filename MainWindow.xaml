@@ -3,10 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FurnitureStoreApp"
+        xmlns:local="clr-namespace:FurnitureStoreApp" 
+        xmlns:viewmodel="clr-namespace:FurnitureStoreApp.Viewmodel" d:DataContext="{d:DesignInstance Type=viewmodel:ProductViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Border Padding="10">
+        <StackPanel>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Id, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Name, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Manufacturer, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Quantity, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Price, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Width, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Length, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Height, Mode=TwoWay}"></TextBox>
+
+            <DataGrid ItemsSource="{Binding Path=Products, Mode=TwoWay}">
+            </DataGrid>
+
+            <Button Command="{Binding Path=addCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Add new"/>
+            <Button Command="{Binding Path=editCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit"/>
+            <Button Command="{Binding Path=deleteCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete"/>
+
+        </StackPanel>
+    </Border>
 </Window>

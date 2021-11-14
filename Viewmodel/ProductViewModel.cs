@@ -9,10 +9,10 @@ using FurnitureStoreApp.Viewmodel.Base;
 
 namespace FurnitureStoreApp.Viewmodel
 {
-    class ProductViewModel : BaseViewModel
+    public class ProductViewModel : BaseViewModel
     {
         public ObservableCollection<ProductDTO> Products { get; set; }
-        public ProductDTO currentProduct;
+        public ProductDTO currentProduct { get; set; }
         public DefaultCommand addCommand { get; }
         public DefaultCommand editCommand { get; }
         public DefaultCommand deleteCommand { get; }
@@ -37,7 +37,7 @@ namespace FurnitureStoreApp.Viewmodel
         }
 
      
-        private void add()
+        public void add()
         {
             try
             {
