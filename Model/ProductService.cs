@@ -39,13 +39,94 @@ namespace FurnitureStoreApp.Model
                         }) ;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
 
             return productDTOs;
+        }
+
+        public bool add(ProductDTO newProduct)
+        {
+            bool isAdded = false;
+            try
+            {
+                var product = new Product();
+                product.Id = newProduct.Id;
+                product.Name = newProduct.Name;
+                product.Manufacturer = newProduct.Manufacturer;
+                product.Quantity = newProduct.Quantity;
+                product.Price = newProduct.Price;
+                product.Width = newProduct.Width;
+                product.Length = newProduct.Length;
+                product.Height = newProduct.Height;
+
+                ProductDatabaseEntities.Product.Add(product);
+                var affectedRows = ProductDatabaseEntities.SaveChanges();
+
+                isAdded = affectedRows > 0;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return isAdded;
+        }
+
+        public bool edit(ProductDTO productToEdit)
+        {
+            bool isEdited = false;
+
+            try
+            {
+                var product = ProductDatabaseEntities.Product.Find(productToEdit.Id);
+                product.Name = productToEdit.Name;
+                product.Manufacturer = productToEdit.Manufacturer;
+                product.Quantity = productToEdit.Quantity;
+                product.Price = productToEdit.Price;
+                product.Width = productToEdit.Width;
+                product.Length = productToEdit.Length;
+                product.Height = productToEdit.Height;
+
+                var affectedRows = ProductDatabaseEntities.SaveChanges();
+
+                isEdited = affectedRows > 0;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return isEdited;
+        }
+
+        public bool delete(int idToDelete)
+        {
+            bool isDeleted = false;
+
+            try
+            {
+                var product = ProductDatabaseEntities.Product.Find(idToDelete);
+                ProductDatabaseEntities.Product.Remove(product);
+
+                var affectedRows = ProductDatabaseEntities.SaveChanges();
+
+                isDeleted = affectedRows > 0;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return isDeleted;
         }
 
     }
