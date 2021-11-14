@@ -18,9 +18,9 @@ namespace FurnitureStoreApp.Model
         public string Name { get; set; }
         public string Manufacturer { get; set; }
         public Nullable<int> Quantity { get; set; }
-        public Nullable<int> Price { get; set; }
-        public Nullable<int> Width { get; set; }
-        public Nullable<int> Length { get; set; }
-        public Nullable<int> Height { get; set; }
+        public int Price { get; set; }
+        public int Width { get; set; }
+        public int Length { get; set; }
+        public int Height { get; set; }
     }
 }
