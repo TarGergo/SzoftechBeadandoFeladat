@@ -91,6 +91,8 @@
     </Compile>
     <Compile Include="Model\ProductService.cs" />
     <Compile Include="Viewmodel\Base\BaseViewModel.cs" />
+    <Compile Include="Viewmodel\Base\DefaultCommand.cs" />
+    <Compile Include="Viewmodel\ProductViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
