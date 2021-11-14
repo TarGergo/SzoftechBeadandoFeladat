@@ -129,5 +129,37 @@ namespace FurnitureStoreApp.Model
             return isDeleted;
         }
 
+        public ProductDTO search(int id)
+        {
+            ProductDTO productDTO = null;
+
+            try
+            {
+                var product = ProductDatabaseEntities.Product.Find(id);
+                if (product != null)
+                {
+                    productDTO = new ProductDTO()
+                    {
+                        Id = product.Id,
+                        Name = product.Name,
+                        Manufacturer = product.Manufacturer,
+                        Quantity = product.Quantity,
+                        Price = product.Price,
+                        Width = product.Width,
+                        Length = product.Length,
+                        Height = product.Height
+                    };
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return productDTO;
+        }
+
     }
 }

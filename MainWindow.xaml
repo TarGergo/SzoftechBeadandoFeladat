@@ -24,7 +24,9 @@
             <Button Command="{Binding Path=addCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Add new"/>
             <Button Command="{Binding Path=editCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit"/>
             <Button Command="{Binding Path=deleteCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete"/>
+            <Button Command="{Binding Path=searchCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Search"/>
 
+            <Label Content="{Binding Path=infoMessage}" Height="auto"/>
         </StackPanel>
     </Border>
 </Window>

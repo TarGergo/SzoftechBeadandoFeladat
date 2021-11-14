@@ -16,7 +16,8 @@ namespace FurnitureStoreApp.Viewmodel
         public DefaultCommand addCommand { get; }
         public DefaultCommand editCommand { get; }
         public DefaultCommand deleteCommand { get; }
-        public string infoMessage;
+        public DefaultCommand searchCommand { get; }
+        public string infoMessage { get; set; }
         private string errorMessage = "Something went wrong! Operation failed!";
         private ProductService productService;
 
@@ -28,6 +29,7 @@ namespace FurnitureStoreApp.Viewmodel
             addCommand = new DefaultCommand(add);
             editCommand = new DefaultCommand(edit);
             deleteCommand = new DefaultCommand(delete);
+            searchCommand = new DefaultCommand(search);
 
         }
 
@@ -98,6 +100,33 @@ namespace FurnitureStoreApp.Viewmodel
             {
 
                 throw ex;
+            }
+        }
+        private void search()
+        {
+            try
+            {
+                ProductDTO searchedProduct = productService.search(currentProduct.Id);
+                if (searchedProduct != null)
+                {
+                    currentProduct.Name = searchedProduct.Name;
+                    currentProduct.Manufacturer = searchedProduct.Manufacturer;
+                    currentProduct.Quantity = searchedProduct.Quantity;
+                    currentProduct.Price = searchedProduct.Price;
+                    currentProduct.Width = searchedProduct.Width;
+                    currentProduct.Length = searchedProduct.Length;
+                    currentProduct.Height = searchedProduct.Height;
+                    infoMessage = currentProduct.Name + "is found!";
+                }
+                else
+                {
+                    infoMessage = "The product couldnt be found with the given id number";
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
