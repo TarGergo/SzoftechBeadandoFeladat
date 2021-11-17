@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+using System.Xml;
+using System.Xml.Linq;
+using System.IO;
 
 namespace FurnitureStoreApp.Model
 {
     public class ProductService
     {
         private ProductDatabaseEntities ProductDatabaseEntities;
-
+      
         public ProductService()
         {
             ProductDatabaseEntities = new ProductDatabaseEntities();
@@ -160,6 +162,8 @@ namespace FurnitureStoreApp.Model
 
             return productDTO;
         }
+
+      
 
     }
 }

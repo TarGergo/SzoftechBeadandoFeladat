@@ -48,6 +48,27 @@
     <Reference Include="PropertyChanged, Version=3.4.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>packages\PropertyChanged.Fody.3.4.0\lib\net40\PropertyChanged.dll</HintPath>
     </Reference>
+    <Reference Include="Spire.Doc, Version=9.11.6.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\Spire.Doc.9.11.6\lib\net40\Spire.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License, Version=1.4.0.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <HintPath>packages\Spire.Doc.9.11.6\lib\net40\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=7.11.1.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\Spire.Doc.9.11.6\lib\net40\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=19.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Compression.Base.19.3.0.53\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DocIO.Base, Version=19.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.DocIO.Wpf.19.3.0.53\lib\net46\Syncfusion.DocIO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=19.3460.0.53, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Licensing.19.3.0.53\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.OfficeChart.Base, Version=19.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.OfficeChart.Base.19.3.0.53\lib\net46\Syncfusion.OfficeChart.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -71,6 +92,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\CustomerDTO.cs" />
+    <Compile Include="Model\Customers.cs">
+      <DependentUpon>PurchasesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CustomerService.cs" />
     <Compile Include="Model\Product.cs">
       <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
@@ -90,9 +116,30 @@
       <DependentUpon>ProductModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\ProductService.cs" />
+    <Compile Include="Model\PurchaseDTO.cs" />
+    <Compile Include="Model\Purchases.cs">
+      <DependentUpon>PurchasesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PurchaseService.cs" />
+    <Compile Include="Model\PurchasesModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchasesModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PurchasesModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchasesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PurchasesModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchasesModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Viewmodel\Base\BaseViewModel.cs" />
     <Compile Include="Viewmodel\Base\DefaultCommand.cs" />
     <Compile Include="Viewmodel\ProductViewModel.cs" />
+    <Compile Include="Viewmodel\PurchaseViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -132,6 +179,13 @@
     <None Include="Model\ProductModel.edmx.diagram">
       <DependentUpon>ProductModel.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="Model\PurchasesModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PurchasesModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\PurchasesModel.edmx.diagram">
+      <DependentUpon>PurchasesModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -157,6 +211,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ProductModel.edmx</DependentUpon>
       <LastGenOutput>ProductModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\PurchasesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PurchasesModel.edmx</DependentUpon>
+      <LastGenOutput>PurchasesModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\PurchasesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PurchasesModel.edmx</DependentUpon>
+      <LastGenOutput>PurchasesModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

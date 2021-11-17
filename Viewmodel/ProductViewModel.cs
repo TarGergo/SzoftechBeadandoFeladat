@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml;
 using FurnitureStoreApp.Model;
 using FurnitureStoreApp.Viewmodel.Base;
 
@@ -21,6 +19,19 @@ namespace FurnitureStoreApp.Viewmodel
         private string errorMessage = "Something went wrong! Operation failed!";
         private ProductService productService;
 
+
+        public ObservableCollection<PurchaseDTO> Purchases { get; set; }
+        public PurchaseDTO currentPurchase { get; set; }
+        private PurchaseService purchaseService;
+        public DefaultCommand addPurchaseCommand { get; }
+
+
+        public ObservableCollection<CustomerDTO> Customers { get; set; }
+        private CustomerService customerService;
+        public DefaultCommand addCustomerCommand { get; set; }
+        public CustomerDTO currentCustomer { get; set; }
+
+
         public ProductViewModel()
         {
             productService = new ProductService();
@@ -31,11 +42,36 @@ namespace FurnitureStoreApp.Viewmodel
             deleteCommand = new DefaultCommand(delete);
             searchCommand = new DefaultCommand(search);
 
+
+           
+            Purchases = new ObservableCollection<PurchaseDTO>();
+            currentPurchase = new PurchaseDTO();
+            purchaseService = new PurchaseService();
+            addPurchaseCommand = new DefaultCommand(addProduct);
+            loadPurchase();
+
+            Customers = new ObservableCollection<CustomerDTO>();
+            customerService = new CustomerService();
+            addCustomerCommand = new DefaultCommand(addCustomer);
+            currentCustomer = new CustomerDTO();
+
+            loadCustomers();
+
         }
 
         public void loadData()
         {
             Products = new ObservableCollection<ProductDTO>(productService.getAllProduct());
+        }
+
+        public void loadPurchase()
+        {
+            Purchases = new ObservableCollection<PurchaseDTO>(purchaseService.getAllPurchase());
+        }
+
+        public void loadCustomers()
+        {
+            Customers = new ObservableCollection<CustomerDTO>(customerService.getAllCustomer());
         }
 
      
@@ -129,5 +165,35 @@ namespace FurnitureStoreApp.Viewmodel
                 throw;
             }
         }
+
+        public void addProduct()
+        {
+            try
+            {
+                purchaseService.add(currentPurchase);
+                loadPurchase();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void addCustomer()
+        {
+            try
+            {
+                customerService.add(currentCustomer);
+                loadCustomers();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
     }
 }

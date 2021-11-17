@@ -9,24 +9,20 @@
         Title="MainWindow" Height="450" Width="800">
     <Border Padding="10">
         <StackPanel>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Id, Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Name, Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Manufacturer, Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Quantity, Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Price, Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Width, Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Length, Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Height, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.CustomerID, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.PurchaseID, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.Price, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.Quantity, Mode=TwoWay}"></TextBox>
 
-            <DataGrid ItemsSource="{Binding Path=Products, Mode=TwoWay}">
+            <DataGrid ItemsSource="{Binding Path=Purchases, Mode=TwoWay}">
             </DataGrid>
 
-            <Button Command="{Binding Path=addCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Add new"/>
-            <Button Command="{Binding Path=editCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit"/>
+            <Button Command="{Binding Path=addCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Add new"/>
+            <Button Command="{Binding Path=addPurchaseCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit"/>
             <Button Command="{Binding Path=deleteCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete"/>
             <Button Command="{Binding Path=searchCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Search"/>
-
             <Label Content="{Binding Path=infoMessage}" Height="auto"/>
+
         </StackPanel>
     </Border>
 </Window>
