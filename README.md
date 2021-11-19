@@ -34,6 +34,7 @@ constraint pk_Product primary key(Id)
 
 drop table if exists ProductDatabase.dbo.Purchases
 create table Purchases (
+Id int identity PRIMARY KEY,
 PurchaseID int PRIMARY KEY not null,
 CustomerID int not null,
 Quantity int not null,
