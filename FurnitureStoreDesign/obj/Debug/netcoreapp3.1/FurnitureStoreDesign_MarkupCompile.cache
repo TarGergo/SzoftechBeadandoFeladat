@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\FurnitureStoreDesign\obj\Debug\netcoreapp3.1\
+F:\FurnitureStoreDesign\obj\Debug\netcoreapp3.1\
 FurnitureStoreDesign
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-E:\FurnitureStoreDesign\App.xaml
-11407045341
+F:\FurnitureStoreDesign\App.xaml
+2568179250
 
 3-1233169557
 192-1533232326
-MainWindow.xaml;
+MainWindow.xaml;Resourches\DefaultStyle.xaml;
 
 False
 

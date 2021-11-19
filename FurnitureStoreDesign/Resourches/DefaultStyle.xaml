@@ -1,8 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ImageBrush x:Key="toogleButtonMouseOver"
-                ImageSource="../Assets/egerfelette"/>
-    <ImageBrush x:Key="closeBttn_MouseOver" ImageSource="../Assets/egerfelette"/>
+    
+    <ImageBrush x:Key="toggleButtonMouseOver"
+                ImageSource="../Assets/egerfelette.png"/>
+    
+    <ImageBrush x:Key="closeBttn_MouseOver" ImageSource="../Assets/egerfelette.png"/>
     <Style x:Key="closeBttn" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
@@ -49,7 +51,8 @@
                                     Value="{StaticResource toggleButtonMouseOver}"/>
                             <Setter Property="BorderBrush"
                                     TargetName="border"
-                                    Value="{StaticResource toggleButtonMouseOver}"/>
+                                    Value="{StaticResource toggleButtonMouseOver}"/>
+
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
