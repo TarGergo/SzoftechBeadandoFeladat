@@ -14,6 +14,7 @@ namespace FurnitureStoreApp.Model
     
     public partial class Purchases
     {
+        public int Id { get; set; }
         public int PurchaseID { get; set; }
         public int CustomerID { get; set; }
         public int Quantity { get; set; }

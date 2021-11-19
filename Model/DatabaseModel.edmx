@@ -29,8 +29,9 @@
         </EntityType>
         <EntityType Name="Purchases">
           <Key>
-            <PropertyRef Name="PurchaseID" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PurchaseID" Type="int" Nullable="false" />
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
@@ -50,7 +51,7 @@
         </Association>
         <Association Name="FK_Purchases_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Purchases" Type="Self.Purchases" Multiplicity="0..1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="Id" />
@@ -104,8 +105,9 @@
         </EntityType>
         <EntityType Name="Purchases">
           <Key>
-            <PropertyRef Name="PurchaseID" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PurchaseID" Type="Int32" Nullable="false" />
           <Property Name="CustomerID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
@@ -127,7 +129,7 @@
         </Association>
         <Association Name="FK_Purchases_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Purchases" Type="Self.Purchases" Multiplicity="0..1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="Id" />
@@ -183,6 +185,7 @@
           <EntitySetMapping Name="Purchases">
             <EntityTypeMapping TypeName="ProductDatabaseModel.Purchases">
               <MappingFragment StoreEntitySet="Purchases">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />

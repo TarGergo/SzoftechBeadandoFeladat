@@ -14,6 +14,12 @@ namespace FurnitureStoreApp.Model
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.Purchases = new ObservableCollection<Purchases>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Manufacturer { get; set; }
@@ -23,6 +29,7 @@ namespace FurnitureStoreApp.Model
         public int Length { get; set; }
         public int Height { get; set; }
     
-        public virtual Purchases Purchases { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ObservableCollection<Purchases> Purchases { get; set; }
     }
 }

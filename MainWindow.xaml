@@ -9,17 +9,40 @@
         Title="MainWindow" Height="450" Width="800">
     <Border Padding="10">
         <StackPanel>
+            <Label Content="Purchases---CustomerID-PurchaseID-Price-Quantity" Height="auto"/>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.CustomerID, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.PurchaseID, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.Price, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.Quantity, Mode=TwoWay}"></TextBox>
+            <Label Content="Customers---PurchaseID-Name-FullPrice" Height="auto"/>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentCustomer.PurchaseID, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentCustomer.Name, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentCustomer.FullPrice, Mode=TwoWay}"></TextBox>
+            <Label Content="Product---Id-Name-Manufact-Price-Quantity-Height-Width-Length" Height="auto"/>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Id, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Name, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Manufacturer ,Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Price ,Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Quantity ,Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Height ,Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Width ,Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Length ,Mode=TwoWay}"></TextBox>
+
+
+
 
             <DataGrid ItemsSource="{Binding Path=Purchases, Mode=TwoWay}">
             </DataGrid>
 
-            <Button Command="{Binding Path=addCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Add new"/>
-            <Button Command="{Binding Path=addPurchaseCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit"/>
-            <Button Command="{Binding Path=addProductCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete"/>
+            <DataGrid ItemsSource="{Binding Path=Customers, Mode=TwoWay}">
+            </DataGrid>
+
+            <DataGrid ItemsSource="{Binding Path=Products, Mode=TwoWay}">
+            </DataGrid>
+
+            <Button Command="{Binding Path=addCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Customer"/>
+            <Button Command="{Binding Path=addPurchaseCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Purchase"/>
+            <Button Command="{Binding Path=addProductCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Product"/>
             <Button Command="{Binding Path=searchCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Search"/>
             <Label Content="{Binding Path=infoMessage}" Height="auto"/>
 
