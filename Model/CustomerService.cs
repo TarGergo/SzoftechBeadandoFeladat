@@ -9,11 +9,11 @@ namespace FurnitureStoreApp.Model
 {
     class CustomerService
     {
-        private ProductDatabaseEntities productDatabaseEntitiesOfPurchases;
+        private ProductDatabaseEntities productDatabaseEntities;
 
         public CustomerService()
         {
-            productDatabaseEntitiesOfPurchases = new ProductDatabaseEntities();
+            productDatabaseEntities = new ProductDatabaseEntities();
         }
 
         public List<CustomerDTO> getAllCustomer()
@@ -22,7 +22,7 @@ namespace FurnitureStoreApp.Model
 
             try
             {
-                var customers = from c in productDatabaseEntitiesOfPurchases.Customers select c;
+                var customers = from c in productDatabaseEntities.Customers select c;
 
                 foreach (var item in customers)
                 {
@@ -54,8 +54,8 @@ namespace FurnitureStoreApp.Model
             customer.FullPrice = newCustomer.FullPrice;
             customer.PurchaseID = newCustomer.PurchaseID;
 
-            productDatabaseEntitiesOfPurchases.Customers.Add(customer);
-            productDatabaseEntitiesOfPurchases.SaveChanges();
+            productDatabaseEntities.Customers.Add(customer);
+            productDatabaseEntities.SaveChanges();
 
         }
 
@@ -64,7 +64,11 @@ namespace FurnitureStoreApp.Model
         {
             try
             {
-               // var customer = productDatabaseEntitiesOfPurchases.Customers.Find(customerToEdit.PurchaseID);
+                var customer = productDatabaseEntities.Customers.Find(customerToEdit.PurchaseID);
+                customer.Name = customerToEdit.Name;
+                customer.FullPrice = customerToEdit.FullPrice;
+
+                productDatabaseEntities.SaveChanges();
 
 
 
@@ -74,6 +78,45 @@ namespace FurnitureStoreApp.Model
 
                 throw;
             }
+        }
+
+        public void delete(int idToDelete)
+        {
+            var customer = productDatabaseEntities.Customers.Find(idToDelete);
+            productDatabaseEntities.Customers.Remove(customer);
+
+            productDatabaseEntities.SaveChanges();
+
+
+        }
+
+        public CustomerDTO search(int idToFind)
+        {
+            CustomerDTO customerDTO = null;
+
+            try
+            {
+                var customer = productDatabaseEntities.Customers.Find(idToFind);
+                if (customer != null)
+                {
+                    customerDTO = new CustomerDTO()
+                    {
+                        Name = customer.Name,
+                        Date = customer.Date,
+                        FullPrice = customer.FullPrice
+                    };
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+            return customerDTO;
         }
 
 

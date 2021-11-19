@@ -124,7 +124,6 @@
     <Compile Include="Viewmodel\Base\BaseViewModel.cs" />
     <Compile Include="Viewmodel\Base\DefaultCommand.cs" />
     <Compile Include="Viewmodel\ProductViewModel.cs" />
-    <Compile Include="Viewmodel\PurchaseViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

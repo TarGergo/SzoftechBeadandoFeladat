@@ -12,9 +12,9 @@ namespace FurnitureStoreApp.Viewmodel
         public ObservableCollection<ProductDTO> Products { get; set; }
         public ProductDTO currentProduct { get; set; }
         public DefaultCommand addProductCommand { get; }
-        public DefaultCommand editCommand { get; }
-        public DefaultCommand deleteCommand { get; }
-        public DefaultCommand searchCommand { get; }
+        public DefaultCommand editProductCommand { get; }
+        public DefaultCommand deleteProductCommand { get; }
+        public DefaultCommand searchProductCommand { get; }
         public string infoMessage { get; set; }
         private string errorMessage = "Something went wrong! Operation failed!";
         private ProductService productService;
@@ -29,6 +29,9 @@ namespace FurnitureStoreApp.Viewmodel
         public ObservableCollection<CustomerDTO> Customers { get; set; }
         private CustomerService customerService;
         public DefaultCommand addCustomerCommand { get; set; }
+        public DefaultCommand editCustomerCommand { get; }
+        public DefaultCommand deleteCustomerCommand { get; }
+
         public CustomerDTO currentCustomer { get; set; }
 
 
@@ -38,9 +41,9 @@ namespace FurnitureStoreApp.Viewmodel
             currentProduct = new ProductDTO();
             loadData();
             addProductCommand = new DefaultCommand(addProduct);
-            editCommand = new DefaultCommand(edit);
-            deleteCommand = new DefaultCommand(delete);
-            searchCommand = new DefaultCommand(search);
+            editProductCommand = new DefaultCommand(edit);
+            deleteProductCommand = new DefaultCommand(delete);
+            searchProductCommand = new DefaultCommand(search);
 
 
            
@@ -53,8 +56,9 @@ namespace FurnitureStoreApp.Viewmodel
             Customers = new ObservableCollection<CustomerDTO>();
             customerService = new CustomerService();
             addCustomerCommand = new DefaultCommand(addCustomer);
+            editCustomerCommand = new DefaultCommand(editCustomer);
+            deleteCustomerCommand = new DefaultCommand(deleteCustomer);
             currentCustomer = new CustomerDTO();
-
             loadCustomers();
 
         }
@@ -185,6 +189,26 @@ namespace FurnitureStoreApp.Viewmodel
             try
             {
                 customerService.add(currentCustomer);
+                loadCustomers();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void editCustomer()
+        {
+            customerService.edit(currentCustomer);
+            loadCustomers();
+        }
+
+        public void deleteCustomer()
+        {
+            try
+            {
+                customerService.delete(currentCustomer.PurchaseID);
                 loadCustomers();
             }
             catch (Exception)

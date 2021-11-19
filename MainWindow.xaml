@@ -22,11 +22,7 @@
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Id, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Name, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Manufacturer ,Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Price ,Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Quantity ,Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Height ,Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Width ,Mode=TwoWay}"></TextBox>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Length ,Mode=TwoWay}"></TextBox>
+            
 
 
 
@@ -43,9 +39,10 @@
             <Button Command="{Binding Path=addCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Customer"/>
             <Button Command="{Binding Path=addPurchaseCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Purchase"/>
             <Button Command="{Binding Path=addProductCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Product"/>
+            <Button Command="{Binding Path=editCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit Customer"/>
+            <Button Command="{Binding Path=deleteCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete Customer"/>
             <Button Command="{Binding Path=searchCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Search"/>
-            <Label Content="{Binding Path=infoMessage}" Height="auto"/>
-
+            <Button Command="{Binding Path=searchCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Search"/>
         </StackPanel>
     </Border>
 </Window>

@@ -8,11 +8,11 @@ namespace FurnitureStoreApp.Model
 {
     class PurchaseService
     {
-        private ProductDatabaseEntities productDatabaseEntitiesOfPurchases;
+        private ProductDatabaseEntities productDatabaseEntities;
 
         public PurchaseService()
         {
-            productDatabaseEntitiesOfPurchases = new ProductDatabaseEntities();
+            productDatabaseEntities = new ProductDatabaseEntities();
         }
 
         public List<PurchaseDTO> getAllPurchase()
@@ -21,7 +21,7 @@ namespace FurnitureStoreApp.Model
 
             try
             {
-                var purchases = from p in productDatabaseEntitiesOfPurchases.Purchases
+                var purchases = from p in productDatabaseEntities.Purchases
                                 select p;
 
                 foreach (var p in purchases)
@@ -58,8 +58,8 @@ namespace FurnitureStoreApp.Model
                 purch.Price = newPurchase.Price;
                 purch.Quantity = newPurchase.Quantity;
 
-                productDatabaseEntitiesOfPurchases.Purchases.Add(purch);
-                productDatabaseEntitiesOfPurchases.SaveChanges();
+                productDatabaseEntities.Purchases.Add(purch);
+                productDatabaseEntities.SaveChanges();
             }
             catch (Exception)
             {
