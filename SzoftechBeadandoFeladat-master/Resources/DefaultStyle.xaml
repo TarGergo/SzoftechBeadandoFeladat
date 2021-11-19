@@ -1,0 +1,65 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ImageBrush x:Key="toggleButtonMouseOver"
+                ImageSource="../Assets/lenyomva.png"/>
+
+    <ImageBrush x:Key="closeBttn_MouseOver" ImageSource="../Assets/lenyomva.png"/>
+    <Style x:Key="closeBttn" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="bttn"
+                        BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        SnapsToDevicePixels="True"
+                        />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    TargetName="bttn"
+                                    Value="{StaticResource closeBttn_MouseOver}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toggleButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background"
+                                    TargetName="border"
+                                    Value="{StaticResource toggleButtonMouseOver}"/>
+                            <Setter Property="BorderBrush"
+                                    TargetName="border"
+                                    Value="{StaticResource toggleButtonMouseOver}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background"
+                                    TargetName="border"
+                                    Value="{StaticResource toggleButtonMouseOver}"/>
+                            <Setter Property="BorderBrush"
+                                    TargetName="border"
+                                    Value="{StaticResource toggleButtonMouseOver}"/>
+
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+</ResourceDictionary>
