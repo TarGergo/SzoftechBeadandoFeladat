@@ -9,7 +9,7 @@ namespace FurnitureStoreApp.Viewmodel
 {
     public class ProductViewModel : BaseViewModel
     {
-        public int ID { get; set; }
+        
 
         public ObservableCollection<ProductDTO> Products { get; set; }
         public ProductDTO currentProduct { get; set; }
@@ -227,7 +227,7 @@ namespace FurnitureStoreApp.Viewmodel
 
         public void deletePurchase()
         {
-            purchaseService.delete(ID);
+            purchaseService.delete(currentPurchase.PurchaseID, currentPurchase.CustomerID);
             loadPurchase();
         }
 

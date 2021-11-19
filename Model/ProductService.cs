@@ -138,6 +138,7 @@ namespace FurnitureStoreApp.Model
             try
             {
                 var product = ProductDatabaseEntities.Product.Find(id);
+               
                 if (product != null)
                 {
                     productDTO = new ProductDTO()

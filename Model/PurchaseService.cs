@@ -23,6 +23,7 @@ namespace FurnitureStoreApp.Model
             {
                 var purchases = from p in productDatabaseEntities.Purchases
                                 select p;
+                
 
                 foreach (var p in purchases)
                 {
@@ -48,10 +49,15 @@ namespace FurnitureStoreApp.Model
         {
             try
             {
+                var purchashedProduct = new Product();
+                var pr = from p in productDatabaseEntities.Product where p.Id == newPurchase.PurchaseID  select p.Price;
+                purchashedProduct.Price = pr.Sum();
+
+
                 var purch = new Purchases();
                 purch.CustomerID = newPurchase.CustomerID;
                 purch.PurchaseID = newPurchase.PurchaseID;
-                purch.Price = newPurchase.Price;
+                purch.Price = purchashedProduct.Price;
                 purch.Quantity = newPurchase.Quantity;
 
                 productDatabaseEntities.Purchases.Add(purch);
@@ -64,9 +70,12 @@ namespace FurnitureStoreApp.Model
             }
         }
 
-        public void delete(int idToDelete)
+        public void delete(int idToDelete, int custId)
         {
-            var purchase = productDatabaseEntities.Purchases.Find(idToDelete);
+            var deletableProduct = from p in productDatabaseEntities.Purchases where p.PurchaseID == idToDelete && p.CustomerID == custId select p.Id;
+            int asd = deletableProduct.Sum();
+
+            var purchase = productDatabaseEntities.Purchases.Find(asd);
             productDatabaseEntities.Purchases.Remove(purchase);
 
             productDatabaseEntities.SaveChanges();
