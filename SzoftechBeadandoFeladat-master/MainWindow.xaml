@@ -1,0 +1,64 @@
+﻿<Window x:Class="FurnitureStoreApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurnitureStoreApp"
+        mc:Ignorable="d"
+        Title="MainWindow"
+            Height="600" 
+            Width="1000" 
+            WindowStartupLocation="CenterScreen"
+            ResizeMode="NoResize"
+            Topmost="True"
+            WindowStyle="None">
+    <Grid>
+        <Grid Background="#B7C3C4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="800"/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="520"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+          
+            <TextBlock Background="#9DEEF9"
+                       Grid.ColumnSpan="3"
+                       TextAlignment="Center"
+                       FontSize="60"                 
+                       FontFamily="Times New Roman"
+                       FontStyle="Italic"
+                       Foreground="#F6F6F8"
+                       Text="Furniture Store"
+                      
+                       >
+                
+            </TextBlock>
+            <Button x:Name="closeBttn"
+                Grid.Column="2"
+                Grid.Row="0"
+                Height="70"
+                Width="70"
+                BorderThickness="0"
+                Style="{StaticResource closeBttn}" Click="closeBttn_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Assets/alap.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Grid x:Name="menuPanel"
+                  HorizontalAlignment="Left"
+                  Width="100"
+                  Background="#4C7378">
+                <StackPanel>
+                
+            </StackPanel>
+            </Grid>
+        </Grid>
+   
+</Window>
