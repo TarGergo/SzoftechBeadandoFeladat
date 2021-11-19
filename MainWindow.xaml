@@ -9,8 +9,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Border Padding="10">
         <StackPanel>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.PurchaseID, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.CustomerID, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.PurchaseID, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.Price, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.Quantity, Mode=TwoWay}"></TextBox>
 
@@ -19,7 +19,7 @@
 
             <Button Command="{Binding Path=addCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Add new"/>
             <Button Command="{Binding Path=addPurchaseCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit"/>
-            <Button Command="{Binding Path=deleteCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete"/>
+            <Button Command="{Binding Path=addProductCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete"/>
             <Button Command="{Binding Path=searchCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Search"/>
             <Label Content="{Binding Path=infoMessage}" Height="auto"/>
 

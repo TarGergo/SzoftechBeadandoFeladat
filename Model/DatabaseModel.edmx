@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProductDatabaseModelOfPurchases.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ProductDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="PurchaseID" />
@@ -14,17 +14,30 @@
           <Property Name="PurchaseID" Type="int" Nullable="false" />
           <Property Name="FullPrice" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Manufacturer" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="Length" Type="int" Nullable="false" />
+          <Property Name="Height" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Purchases">
           <Key>
             <PropertyRef Name="PurchaseID" />
           </Key>
           <Property Name="PurchaseID" Type="int" Nullable="false" />
-          <Property Name="CustomerID" Type="int" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Purchases_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
           <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
@@ -35,11 +48,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProductDatabaseModelOfPurchasesStoreContainer">
+        <Association Name="FK_Purchases_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="PurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProductDatabaseModelStoreContainer">
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Purchases" EntityType="Self.Purchases" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Purchases_Customers" Association="Self.FK_Purchases_Customers">
             <End Role="Customers" EntitySet="Customers" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Product" Association="Self.FK_Purchases_Product">
+            <End Role="Product" EntitySet="Product" />
             <End Role="Purchases" EntitySet="Purchases" />
           </AssociationSet>
         </EntityContainer>
@@ -47,7 +77,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ProductDatabaseModelOfPurchases" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ProductDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="PurchaseID" />
@@ -58,18 +88,33 @@
           <Property Name="FullPrice" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_Customers" FromRole="Customers" ToRole="Purchases" />
         </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manufacturer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Width" Type="Int32" Nullable="false" />
+          <Property Name="Length" Type="Int32" Nullable="false" />
+          <Property Name="Height" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_Product" FromRole="Product" ToRole="Purchases" />
+        </EntityType>
         <EntityType Name="Purchases">
           <Key>
             <PropertyRef Name="PurchaseID" />
           </Key>
           <Property Name="PurchaseID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customers" Relationship="Self.FK_Purchases_Customers" FromRole="Purchases" ToRole="Customers" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Purchases_Product" FromRole="Purchases" ToRole="Product" />
         </EntityType>
         <Association Name="FK_Purchases_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
           <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
@@ -80,11 +125,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProductDatabaseEntitiesOfPurchases" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Purchases_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="PurchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProductDatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customers" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="Purchases" EntityType="Self.Purchases" />
           <AssociationSet Name="FK_Purchases_Customers" Association="Self.FK_Purchases_Customers">
             <End Role="Customers" EntitySet="Customers" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Product" Association="Self.FK_Purchases_Product">
+            <End Role="Product" EntitySet="Product" />
             <End Role="Purchases" EntitySet="Purchases" />
           </AssociationSet>
         </EntityContainer>
@@ -93,9 +155,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProductDatabaseModelOfPurchasesStoreContainer" CdmEntityContainer="ProductDatabaseEntitiesOfPurchases">
+        <EntityContainerMapping StorageEntityContainer="ProductDatabaseModelStoreContainer" CdmEntityContainer="ProductDatabaseEntities">
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="ProductDatabaseModelOfPurchases.Customers">
+            <EntityTypeMapping TypeName="ProductDatabaseModel.Customers">
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -104,8 +166,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="ProductDatabaseModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Purchases">
-            <EntityTypeMapping TypeName="ProductDatabaseModelOfPurchases.Purchases">
+            <EntityTypeMapping TypeName="ProductDatabaseModel.Purchases">
               <MappingFragment StoreEntitySet="Purchases">
                 <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />

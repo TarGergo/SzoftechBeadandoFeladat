@@ -13,10 +13,10 @@ namespace FurnitureStoreApp.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ProductDatabaseEntitiesOfPurchases : DbContext
+    public partial class ProductDatabaseEntities : DbContext
     {
-        public ProductDatabaseEntitiesOfPurchases()
-            : base("name=ProductDatabaseEntitiesOfPurchases")
+        public ProductDatabaseEntities()
+            : base("name=ProductDatabaseEntities")
         {
         }
     
@@ -26,6 +26,7 @@ namespace FurnitureStoreApp.Model
         }
     
         public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Purchases> Purchases { get; set; }
     }
 }

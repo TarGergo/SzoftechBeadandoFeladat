@@ -15,10 +15,11 @@ namespace FurnitureStoreApp.Model
     public partial class Purchases
     {
         public int PurchaseID { get; set; }
-        public Nullable<int> CustomerID { get; set; }
+        public int CustomerID { get; set; }
         public int Quantity { get; set; }
         public int Price { get; set; }
     
         public virtual Customers Customers { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

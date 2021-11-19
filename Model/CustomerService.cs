@@ -9,11 +9,11 @@ namespace FurnitureStoreApp.Model
 {
     class CustomerService
     {
-        private ProductDatabaseEntitiesOfPurchases productDatabaseEntitiesOfPurchases;
+        private ProductDatabaseEntities productDatabaseEntitiesOfPurchases;
 
         public CustomerService()
         {
-            productDatabaseEntitiesOfPurchases = new ProductDatabaseEntitiesOfPurchases();
+            productDatabaseEntitiesOfPurchases = new ProductDatabaseEntities();
         }
 
         public List<CustomerDTO> getAllCustomer()
@@ -45,9 +45,7 @@ namespace FurnitureStoreApp.Model
 
             return allCustomer;
         }
-
-
-     
+  
         public void add(CustomerDTO newCustomer)
         {
             var customer = new Customers();
@@ -60,6 +58,24 @@ namespace FurnitureStoreApp.Model
             productDatabaseEntitiesOfPurchases.SaveChanges();
 
         }
+
+
+        public void edit(CustomerDTO customerToEdit)
+        {
+            try
+            {
+               // var customer = productDatabaseEntitiesOfPurchases.Customers.Find(customerToEdit.PurchaseID);
+
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
     }
 }

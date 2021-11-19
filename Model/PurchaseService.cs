@@ -8,11 +8,11 @@ namespace FurnitureStoreApp.Model
 {
     class PurchaseService
     {
-        private ProductDatabaseEntitiesOfPurchases productDatabaseEntitiesOfPurchases;
+        private ProductDatabaseEntities productDatabaseEntitiesOfPurchases;
 
         public PurchaseService()
         {
-            productDatabaseEntitiesOfPurchases = new ProductDatabaseEntitiesOfPurchases();
+            productDatabaseEntitiesOfPurchases = new ProductDatabaseEntities();
         }
 
         public List<PurchaseDTO> getAllPurchase()

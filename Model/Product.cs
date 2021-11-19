@@ -10,7 +10,7 @@
 namespace FurnitureStoreApp.Model
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     
     public partial class Product
     {
@@ -22,5 +22,7 @@ namespace FurnitureStoreApp.Model
         public int Width { get; set; }
         public int Length { get; set; }
         public int Height { get; set; }
+    
+        public virtual Purchases Purchases { get; set; }
     }
 }
