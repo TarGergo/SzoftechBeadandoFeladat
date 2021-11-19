@@ -10,6 +10,7 @@
     <Border Padding="10">
         <StackPanel>
             <Label Content="Purchases---CustomerID-PurchaseID-Price-Quantity" Height="auto"/>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=ID, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.CustomerID, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.PurchaseID, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.Price, Mode=TwoWay}"></TextBox>
@@ -41,8 +42,8 @@
             <Button Command="{Binding Path=addProductCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Product"/>
             <Button Command="{Binding Path=editCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit Customer"/>
             <Button Command="{Binding Path=deleteCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete Customer"/>
-            <Button Command="{Binding Path=searchCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Search"/>
-            <Button Command="{Binding Path=searchCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Search"/>
+            <Button Command="{Binding Path=deletePurchaseCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete Purchase"/>
+            <Button Command="{Binding Path=searchCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Search"/>
         </StackPanel>
     </Border>
 </Window>

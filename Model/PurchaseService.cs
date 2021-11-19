@@ -35,16 +35,12 @@ namespace FurnitureStoreApp.Model
                     }) ;
                     
                 }
-
-
             }
             catch (Exception)
             {
 
                 throw;
             }
-
-
             return purchaseDTOs;
         }
 
@@ -67,6 +63,16 @@ namespace FurnitureStoreApp.Model
                 throw;
             }
         }
+
+        public void delete(int idToDelete)
+        {
+            var purchase = productDatabaseEntities.Purchases.Find(idToDelete);
+            productDatabaseEntities.Purchases.Remove(purchase);
+
+            productDatabaseEntities.SaveChanges();
+
+        }
+
 
     }
 }

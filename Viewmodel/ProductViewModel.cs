@@ -9,6 +9,8 @@ namespace FurnitureStoreApp.Viewmodel
 {
     public class ProductViewModel : BaseViewModel
     {
+        public int ID { get; set; }
+
         public ObservableCollection<ProductDTO> Products { get; set; }
         public ProductDTO currentProduct { get; set; }
         public DefaultCommand addProductCommand { get; }
@@ -24,6 +26,8 @@ namespace FurnitureStoreApp.Viewmodel
         public PurchaseDTO currentPurchase { get; set; }
         private PurchaseService purchaseService;
         public DefaultCommand addPurchaseCommand { get; }
+        public DefaultCommand deletePurchaseCommand { get; }
+        public DefaultCommand editPurchaseCommand { get; }
 
 
         public ObservableCollection<CustomerDTO> Customers { get; set; }
@@ -31,6 +35,7 @@ namespace FurnitureStoreApp.Viewmodel
         public DefaultCommand addCustomerCommand { get; set; }
         public DefaultCommand editCustomerCommand { get; }
         public DefaultCommand deleteCustomerCommand { get; }
+        public DefaultCommand searchCustomerCommand { get; }
 
         public CustomerDTO currentCustomer { get; set; }
 
@@ -46,11 +51,12 @@ namespace FurnitureStoreApp.Viewmodel
             searchProductCommand = new DefaultCommand(search);
 
 
-           
+
             Purchases = new ObservableCollection<PurchaseDTO>();
             currentPurchase = new PurchaseDTO();
             purchaseService = new PurchaseService();
             addPurchaseCommand = new DefaultCommand(addPurchase);
+            deletePurchaseCommand = new DefaultCommand(deletePurchase);
             loadPurchase();
 
             Customers = new ObservableCollection<CustomerDTO>();
@@ -58,6 +64,7 @@ namespace FurnitureStoreApp.Viewmodel
             addCustomerCommand = new DefaultCommand(addCustomer);
             editCustomerCommand = new DefaultCommand(editCustomer);
             deleteCustomerCommand = new DefaultCommand(deleteCustomer);
+            searchCustomerCommand = new DefaultCommand(searchCustomer);
             currentCustomer = new CustomerDTO();
             loadCustomers();
 
@@ -78,7 +85,7 @@ namespace FurnitureStoreApp.Viewmodel
             Customers = new ObservableCollection<CustomerDTO>(customerService.getAllCustomer());
         }
 
-     
+
         public void addProduct()
         {
             try
@@ -216,6 +223,26 @@ namespace FurnitureStoreApp.Viewmodel
 
                 throw;
             }
+        }
+
+        public void deletePurchase()
+        {
+            purchaseService.delete(ID);
+            loadPurchase();
+        }
+
+        public void searchCustomer()
+        {
+            CustomerDTO foundCustomer = customerService.search(currentCustomer.PurchaseID);
+            if (foundCustomer != null)
+            {
+                currentCustomer.Name = foundCustomer.Name;
+                currentCustomer.Date = foundCustomer.Date;
+                currentCustomer.FullPrice = foundCustomer.FullPrice;
+
+            }
+
+
         }
 
 
