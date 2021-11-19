@@ -15,10 +15,6 @@ namespace FurnitureStoreApp.Model
         public int PurchaseID { get; set; }
         public int FullPrice { get; set; }
 
-        public virtual ObservableCollection<PurchaseDTO> Purchases { get; set; }
-        public CustomerDTO()
-        {
-            Purchases = new ObservableCollection<PurchaseDTO>();
-        }
+    
     }
 }

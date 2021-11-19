@@ -11,7 +11,7 @@ namespace FurnitureStoreApp.Viewmodel
     {
         public ObservableCollection<ProductDTO> Products { get; set; }
         public ProductDTO currentProduct { get; set; }
-        public DefaultCommand addCommand { get; }
+        public DefaultCommand addProductCommand { get; }
         public DefaultCommand editCommand { get; }
         public DefaultCommand deleteCommand { get; }
         public DefaultCommand searchCommand { get; }
@@ -37,7 +37,7 @@ namespace FurnitureStoreApp.Viewmodel
             productService = new ProductService();
             currentProduct = new ProductDTO();
             loadData();
-            addCommand = new DefaultCommand(add);
+            addProductCommand = new DefaultCommand(addProduct);
             editCommand = new DefaultCommand(edit);
             deleteCommand = new DefaultCommand(delete);
             searchCommand = new DefaultCommand(search);
@@ -47,7 +47,7 @@ namespace FurnitureStoreApp.Viewmodel
             Purchases = new ObservableCollection<PurchaseDTO>();
             currentPurchase = new PurchaseDTO();
             purchaseService = new PurchaseService();
-            addPurchaseCommand = new DefaultCommand(addProduct);
+            addPurchaseCommand = new DefaultCommand(addPurchase);
             loadPurchase();
 
             Customers = new ObservableCollection<CustomerDTO>();
@@ -75,7 +75,7 @@ namespace FurnitureStoreApp.Viewmodel
         }
 
      
-        public void add()
+        public void addProduct()
         {
             try
             {
@@ -166,7 +166,7 @@ namespace FurnitureStoreApp.Viewmodel
             }
         }
 
-        public void addProduct()
+        public void addPurchase()
         {
             try
             {

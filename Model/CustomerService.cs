@@ -32,8 +32,6 @@ namespace FurnitureStoreApp.Model
                         Date = DateTime.Now,
                         PurchaseID = item.PurchaseID,
                         FullPrice = item.FullPrice,
-                        Purchases = convertPurchaseToPurchaseDTO(item.Purchases)
-
                     });
                 }
             }
@@ -49,28 +47,7 @@ namespace FurnitureStoreApp.Model
         }
 
 
-        private ObservableCollection<PurchaseDTO> convertPurchaseToPurchaseDTO(ObservableCollection<Purchases> purchases)
-        {
-            ObservableCollection<PurchaseDTO> purchaseDTOs = new ObservableCollection<PurchaseDTO>();
-
-            foreach (var item in purchases)
-            {
-                purchaseDTOs.Add(new PurchaseDTO
-                {
-                    PurchaseID = item.PurchaseID,
-                    CustomerID = item.CustomerID,
-                    Quantity = item.Quantity,
-                    Price = item.Price
-
-                });
-            }
-
-
-
-            return purchaseDTOs;
-
-        }
-
+     
         public void add(CustomerDTO newCustomer)
         {
             var customer = new Customers();

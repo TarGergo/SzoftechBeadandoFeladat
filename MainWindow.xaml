@@ -9,8 +9,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Border Padding="10">
         <StackPanel>
-            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.CustomerID, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.PurchaseID, Mode=TwoWay}"></TextBox>
+            <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.CustomerID, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.Price, Mode=TwoWay}"></TextBox>
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentPurchase.Quantity, Mode=TwoWay}"></TextBox>
 

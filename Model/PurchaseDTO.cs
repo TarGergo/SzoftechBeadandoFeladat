@@ -14,6 +14,6 @@ namespace FurnitureStoreApp.Model
         public int Quantity { get; set; }
         public int Price { get; set; }
 
-        public virtual Customers Customer { get; set; }
+     
     }
 }

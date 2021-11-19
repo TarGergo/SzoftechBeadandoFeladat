@@ -57,7 +57,6 @@ namespace FurnitureStoreApp.Model
                 purch.PurchaseID = newPurchase.PurchaseID;
                 purch.Price = newPurchase.Price;
                 purch.Quantity = newPurchase.Quantity;
-              //  purch.Customers = newPurchase.Customer;
 
                 productDatabaseEntitiesOfPurchases.Purchases.Add(purch);
                 productDatabaseEntitiesOfPurchases.SaveChanges();
