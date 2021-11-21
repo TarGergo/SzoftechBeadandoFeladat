@@ -51,6 +51,7 @@ namespace FurnitureStoreApp.Model
             {
                 var purchashedProduct = new Product();
                 var pr = from p in productDatabaseEntities.Product where p.Id == newPurchase.PurchaseID  select p.Price;
+               
                 purchashedProduct.Price = pr.Sum();
 
 
@@ -62,6 +63,21 @@ namespace FurnitureStoreApp.Model
 
                 productDatabaseEntities.Purchases.Add(purch);
                 productDatabaseEntities.SaveChanges();
+
+                int price = purch.Price;
+                int quantity = purch.Quantity;
+                var cust = from c in productDatabaseEntities.Customers where c.PurchaseID == purch.CustomerID select c.PurchaseID;
+                int cc = cust.Sum();
+                CustomerDTO customerDTO = new CustomerDTO();
+                customerDTO.FullPrice = quantity * price;
+
+                var realCust = productDatabaseEntities.Customers.Find(cc);
+                realCust.FullPrice += customerDTO.FullPrice;
+                
+
+                productDatabaseEntities.SaveChanges();
+
+
             }
             catch (Exception)
             {

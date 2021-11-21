@@ -24,9 +24,6 @@
             <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=currentProduct.Manufacturer ,Mode=TwoWay}"></TextBox>
             
 
-
-
-
             <DataGrid ItemsSource="{Binding Path=Purchases, Mode=TwoWay}">
             </DataGrid>
 

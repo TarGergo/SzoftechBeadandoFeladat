@@ -51,7 +51,7 @@ namespace FurnitureStoreApp.Model
             var customer = new Customers();
             customer.Name = newCustomer.Name;
             customer.Date = DateTime.Now;
-            customer.FullPrice = newCustomer.FullPrice;
+            customer.FullPrice = 0;
             customer.PurchaseID = newCustomer.PurchaseID;
 
             productDatabaseEntities.Customers.Add(customer);

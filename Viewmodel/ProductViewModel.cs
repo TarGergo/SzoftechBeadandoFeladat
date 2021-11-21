@@ -183,6 +183,7 @@ namespace FurnitureStoreApp.Viewmodel
             {
                 purchaseService.add(currentPurchase);
                 loadPurchase();
+                loadCustomers();
             }
             catch (Exception)
             {
