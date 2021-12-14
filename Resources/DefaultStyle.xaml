@@ -1,0 +1,91 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ImageBrush x:Key="menuToggleButtonMouseOver"
+                ImageSource="../Assets/menu.png"/>
+    <Style x:Key="menuToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background"
+                                    TargetName="border"
+                                    Value="{StaticResource menuToggleButtonMouseOver}"/>
+                            <Setter Property="BorderBrush"
+                                    TargetName="border"
+                                    Value="{StaticResource menuToggleButtonMouseOver}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background"
+                                    TargetName="border"
+                                    Value="{StaticResource menuToggleButtonMouseOver}"/>
+                            <Setter Property="BorderBrush"
+                                    TargetName="border"
+                                    Value="{StaticResource menuToggleButtonMouseOver}"/>
+
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ImageBrush x:Key="closeBttn_MouseOver" ImageSource="../Assets/close_MouseOver.png"/>
+    <Style x:Key="closeBttn" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="bttn"
+                        BorderThickness="0"
+                        Background="{TemplateBinding Background}"
+                        SnapsToDevicePixels="True"
+                        />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    TargetName="bttn"
+                                    Value="{StaticResource closeBttn_MouseOver}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ToolTip" x:Key="tltpStyle">
+        <Setter Property="Placement" Value="Right"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Margin" Value="20,0,0,0"/>
+        <Setter Property="Background" Value="#4A5668"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#5DBEBE"/>
+        <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="PlacementRectangle" Value="60,0,0,0"/>
+        <Setter Property="HorizontalOffset" Value="15"/>
+        <Setter Property="VerticalOffset" Value="5"/>
+        <Setter Property="HasDropShadow" Value="True"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="fontStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily"
+                Value="Times New Roman"/>
+        <Setter Property="VerticalAlignment"
+                Value="Center"/>
+        <Setter Property="HorizontalAlignment"
+                Value="Left"/>
+        <Setter Property="Foreground"
+                Value="#5DBEBE"/>
+        <Setter Property="FontSize"
+                Value="20"/>
+    </Style>
+
+</ResourceDictionary>

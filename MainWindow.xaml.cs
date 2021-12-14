@@ -24,5 +24,27 @@ namespace FurnitureStoreApp
         {
             InitializeComponent();
         }
+
+        private void closeBttn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void tgglBttn_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tgglBttn_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        
     }
 }

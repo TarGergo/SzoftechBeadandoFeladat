@@ -5,8 +5,194 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FurnitureStoreApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+            Height="600" 
+            Width="1000" 
+            WindowStartupLocation="CenterScreen"
+            ResizeMode="NoResize"
+            Topmost="True"
+            WindowStyle="None">
     <Grid>
+        <Grid Background="#B7C3C4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="800"/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="520"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+          
+            <TextBlock Background="#9DEEF9"
+                       Grid.ColumnSpan="3"
+                       TextAlignment="Center"
+                       FontSize="50"                 
+                       FontFamily="Times New Roman"
+                       FontStyle="Italic"
+                       Foreground="#F6F6F8"
+                       Text="Furniture Store"
+                      
+                       ><TextBlock.Effect>
+                        <DropShadowEffect 
+                            BlurRadius="10"
+                            ShadowDepth="5"
+                            Direction="-90"
+                            Color="#9DEEF9"/>
+                        </TextBlock.Effect>
+                
+            </TextBlock>
+            <Button x:Name="closeBttn"
+                Grid.Column="2"
+                Grid.Row="0"
+                Height="40"
+                Width="40"
+                BorderThickness="0"
+                Style="{StaticResource closeBttn}" Click="closeBttn_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Assets/close.png"/>
+                </Button.Background>
+            </Button>
+            
+        </Grid>
         
+        
+        <Grid x:Name="menuPanel"
+                  HorizontalAlignment="Left"
+                  Width="65"
+                  Background="#4C7378">
+
+            <StackPanel>
+                <ToggleButton x:Name="tgglBttn"
+                            Grid.Column="0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            Margin="18, 20, 0, 0"
+                            Height="50"
+                            Width="50"
+                            BorderThickness="0"
+                            Style="{StaticResource menuToggleButtonStyle}" 
+                            Unchecked="tgglBttn_Unchecked"  Checked="tgglBttn_Checked">
+                    <ToggleButton.Background>
+                        <ImageBrush ImageSource="Assets/menu.png"
+                                 Stretch="Fill"/>
+                    </ToggleButton.Background>
+                    <ToggleButton.Triggers>
+                        <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                            <BeginStoryboard>
+                                <Storyboard x:Name="HideStackPanel">
+                                    <DoubleAnimation 
+ 
+                                    Storyboard.TargetName="menuPanel"
+                                    Storyboard.TargetProperty="Width"
+                                    BeginTime="0:0:0"
+                                    From="230" To="65"
+                                    Duration="0:0:0.2">
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <BeginStoryboard>
+                                <Storyboard x:Name="ShowStackPanel">
+                                    <DoubleAnimation
+                                    Storyboard.TargetName="menuPanel"
+                                    Storyboard.TargetProperty="Width"
+                                    BeginTime="0:0:0"
+                                    From="65" To="230"
+                                    Duration="0:0:0.2">
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ToggleButton.Triggers>
+                </ToggleButton>
+                <ListView x:Name="lstVw"
+                 Background="Transparent"
+                 BorderBrush="Transparent"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                    <ListViewItem HorizontalAlignment="Left"
+                          Margin="0,10,0,15" MouseEnter="ListViewItem_MouseEnter">
+                        <StackPanel Orientation="Horizontal"
+                            Width="230"
+                            Height="40">
+                            <Image Source="Assets/customer_button.png"
+                           Stretch="Fill"
+                           Margin="12,0,0,0"
+                            />
+                            <TextBlock Text="Customer List"
+                                       Margin="25,5,0,0"
+                                       Style="{StaticResource fontStyle}"/>
+                        </StackPanel>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="tltCostumer"
+                             Content="Costumer"
+                             Style="{StaticResource tltpStyle}"/>
+                        </ListViewItem.ToolTip>
+                        
+                        
+                        
+                        
+                    </ListViewItem>
+         
+
+
+
+                    <ListViewItem HorizontalAlignment="Left"
+                          Margin="0,10,0,15" MouseEnter="ListViewItem_MouseEnter">
+                        <StackPanel Orientation="Horizontal"
+                            Width="230"
+                            Height="40">
+                            <Image Source="Assets/new_customer_button.png"
+                           Stretch="Fill"
+                           Margin="12,0,0,0"/>
+                            <TextBlock Text="New Customer"
+                                       Margin="25,5,0,0"
+                                       Style="{StaticResource fontStyle}"/>
+                        </StackPanel>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="tltNewCostumer"
+                             Content="NewCostumer"
+                             Style="{StaticResource tltpStyle}"/>
+                        </ListViewItem.ToolTip>
+
+
+
+
+                    </ListViewItem>
+                    <ListViewItem HorizontalAlignment="Left"
+                          Margin="0,10,0,15" MouseEnter="ListViewItem_MouseEnter">
+                        <StackPanel Orientation="Horizontal"
+                            Width="230"
+                            Height="40">
+                            <Image Source="Assets/storage.png"
+                           Stretch="Fill"
+                           Margin="12,0,0,0"/>
+                            <TextBlock Text="Our Storage"
+                                       Margin="25,5,0,0"
+                                       Style="{StaticResource fontStyle}"/>
+                        </StackPanel>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="tltStorage"
+                             Content="Storage"
+                             Style="{StaticResource tltpStyle}"/>
+                        </ListViewItem.ToolTip>
+
+
+
+
+                    </ListViewItem>
+
+                </ListView>
+                
+            </StackPanel>
+                
+            </Grid>
+       
     </Grid>
+   
 </Window>
