@@ -37,12 +37,13 @@
 
             <DataGrid ItemsSource="{Binding Path=Customers, Mode=TwoWay}" MaxHeight="100"/>
 
+            
             <Button Command="{Binding Path=addCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Customer"/>
             <Button Command="{Binding Path=addPurchaseCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Purchase"/>
             <Button Command="{Binding Path=addProductCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Product"/>
-            <Button Command="{Binding Path=editCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit Customer"/>
+            <Button Command="{Binding Path=searchCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Search/Pdf Customer"/>
             <Button Command="{Binding Path=deleteCustomerCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete Customer"/>
-            <Button Command="{Binding Path=deletePurchaseCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Delete Purchase"/>
+            <Button Command="{Binding Path=editProductCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit product"/>
             <Button Command="{Binding Path=editPurchaseCommand}" Height="20" Width="100" HorizontalAlignment="Left" Content="Edit pöcs"/>
         </StackPanel>
     </Border>

@@ -9,7 +9,8 @@ namespace FurnitureStoreApp.Viewmodel
 {
     public class ProductViewModel : BaseViewModel
     {
-        
+        public PdfService pdfService;
+
 
         public ObservableCollection<ProductDTO> Products { get; set; }
         public ProductDTO currentProduct { get; set; }
@@ -20,7 +21,6 @@ namespace FurnitureStoreApp.Viewmodel
         public string infoMessage { get; set; }
         private string errorMessage = "Something went wrong! Operation failed!";
         private ProductService productService;
-
 
         public ObservableCollection<PurchaseDTO> Purchases { get; set; }
         public PurchaseDTO currentPurchase { get; set; }
@@ -36,7 +36,6 @@ namespace FurnitureStoreApp.Viewmodel
         public DefaultCommand editCustomerCommand { get; }
         public DefaultCommand deleteCustomerCommand { get; }
         public DefaultCommand searchCustomerCommand { get; }
-
         public CustomerDTO currentCustomer { get; set; }
 
 
@@ -49,8 +48,6 @@ namespace FurnitureStoreApp.Viewmodel
             editProductCommand = new DefaultCommand(edit);
             deleteProductCommand = new DefaultCommand(delete);
             searchProductCommand = new DefaultCommand(search);
-
-
 
             Purchases = new ObservableCollection<PurchaseDTO>();
             currentPurchase = new PurchaseDTO();
@@ -69,6 +66,7 @@ namespace FurnitureStoreApp.Viewmodel
             currentCustomer = new CustomerDTO();
             loadCustomers();
 
+            pdfService = new PdfService();
         }
 
         public void loadData()
@@ -83,6 +81,7 @@ namespace FurnitureStoreApp.Viewmodel
 
         public void loadCustomers()
         {
+
             Customers = new ObservableCollection<CustomerDTO>(customerService.getAllCustomer());
         }
 
@@ -183,26 +182,29 @@ namespace FurnitureStoreApp.Viewmodel
             try
             {
                 purchaseService.add(currentPurchase);
+
+                productService.editIfPurchaseAdded(currentPurchase.ProductID, currentPurchase.Quantity);
+
                 loadPurchase();
                 loadCustomers();
+                Products.Clear();
                 loadData();
                 infoMessage = purchaseService.settingMessage();
 
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
-  
+
         public void addCustomer()
         {
             try
             {
-                customerService.add(currentCustomer);
-                loadCustomers();
+                 customerService.add(currentCustomer);
+                 loadCustomers();          
             }
             catch (Exception)
             {
@@ -226,7 +228,6 @@ namespace FurnitureStoreApp.Viewmodel
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -235,12 +236,15 @@ namespace FurnitureStoreApp.Viewmodel
         {
             purchaseService.delete(currentPurchase.ProductID, currentPurchase.CustomerID);
             loadPurchase();
+            loadData();
+            loadCustomers();
             infoMessage = purchaseService.settingMessage();
         }
 
         public void editPurchase()
         {
             purchaseService.edit(currentPurchase);
+
             loadPurchase();
             loadData();
             loadCustomers();
@@ -255,7 +259,7 @@ namespace FurnitureStoreApp.Viewmodel
                 currentCustomer.Name = foundCustomer.Name;
                 currentCustomer.Date = foundCustomer.Date;
                 currentCustomer.FullPrice = foundCustomer.FullPrice;
-
+                pdfService.writeToPdf(currentCustomer);
             }
 
 

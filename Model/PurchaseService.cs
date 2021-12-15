@@ -61,14 +61,11 @@ namespace FurnitureStoreApp.Model
                
                 purchashedProduct.Price = pr.Sum();
 
-
                 var purch = new Purchases();
                 purch.CustomerID = newPurchase.CustomerID;
                 purch.ProductID = newPurchase.ProductID;
                 purch.Price = purchashedProduct.Price;
                 purch.Quantity = newPurchase.Quantity;
-
-                
 
                 int price = purch.Price;
                 int quantity = purch.Quantity;
@@ -90,7 +87,7 @@ namespace FurnitureStoreApp.Model
                 }
                 else
                 {
-                    realProduct.Quantity -= quantity;
+                    //realProduct.Quantity -= quantity;
 
                     productDatabaseEntities.Purchases.Add(purch);
                     productDatabaseEntities.SaveChanges();
@@ -157,9 +154,7 @@ namespace FurnitureStoreApp.Model
                 }
                 else
                 {
-
                     realCustomer.FullPrice += purchase.Quantity * purchase.Price;
-
                     realProduct.Quantity -= purchase.Quantity;
                     Message = "Number of brought products successfully edited!";
                     productDatabaseEntities.SaveChanges();

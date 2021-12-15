@@ -40,9 +40,6 @@ namespace FurnitureStoreApp.Model
 
                 throw;
             }
-
-
-
             return allCustomer;
         }
   
@@ -66,16 +63,10 @@ namespace FurnitureStoreApp.Model
             {
                 var customer = productDatabaseEntities.Customers.Find(customerToEdit.PurchaseID);
                 customer.Name = customerToEdit.Name;
-         
-
                 productDatabaseEntities.SaveChanges();
-
-
-
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -84,10 +75,7 @@ namespace FurnitureStoreApp.Model
         {
             var customer = productDatabaseEntities.Customers.Find(idToDelete);
             productDatabaseEntities.Customers.Remove(customer);
-
             productDatabaseEntities.SaveChanges();
-
-
         }
 
         public CustomerDTO search(int idToFind)
