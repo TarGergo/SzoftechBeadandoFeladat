@@ -92,35 +92,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\CustomerDTO.cs" />
     <Compile Include="Model\Customers.cs">
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
+      <DependentUpon>FurnitureStoreDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\FurnitureStoreDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FurnitureStoreDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FurnitureStoreDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FurnitureStoreDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FurnitureStoreDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FurnitureStoreDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CustomerDTO.cs" />
     <Compile Include="Model\CustomerService.cs" />
-    <Compile Include="Model\DatabaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DatabaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DatabaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Product.cs">
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\ProductService.cs" />
     <Compile Include="Model\PurchaseDTO.cs" />
-    <Compile Include="Model\Purchases.cs">
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\PurchaseService.cs" />
+    <Compile Include="Model\Product.cs">
+      <DependentUpon>FurnitureStoreDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Purchases.cs">
+      <DependentUpon>FurnitureStoreDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Viewmodel\Base\BaseViewModel.cs" />
     <Compile Include="Viewmodel\Base\DefaultCommand.cs" />
     <Compile Include="Viewmodel\ProductViewModel.cs" />
@@ -156,12 +156,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\DatabaseModel.edmx">
+    <EntityDeploy Include="Model\FurnitureStoreDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DatabaseModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>FurnitureStoreDbModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\DatabaseModel.edmx.diagram">
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+    <None Include="Model\FurnitureStoreDbModel.edmx.diagram">
+      <DependentUpon>FurnitureStoreDbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -179,15 +179,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\DatabaseModel.Context.tt">
+    <Content Include="Model\FurnitureStoreDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
-      <LastGenOutput>DatabaseModel.Context.cs</LastGenOutput>
+      <DependentUpon>FurnitureStoreDbModel.edmx</DependentUpon>
+      <LastGenOutput>FurnitureStoreDbModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\DatabaseModel.tt">
+    <Content Include="Model\FurnitureStoreDbModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
-      <LastGenOutput>DatabaseModel.cs</LastGenOutput>
+      <DependentUpon>FurnitureStoreDbModel.edmx</DependentUpon>
+      <LastGenOutput>FurnitureStoreDbModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

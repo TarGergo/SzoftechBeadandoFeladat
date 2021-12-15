@@ -57,6 +57,7 @@ namespace FurnitureStoreApp.Viewmodel
             purchaseService = new PurchaseService();
             addPurchaseCommand = new DefaultCommand(addPurchase);
             deletePurchaseCommand = new DefaultCommand(deletePurchase);
+            editPurchaseCommand = new DefaultCommand(editPurchase);
             loadPurchase();
 
             Customers = new ObservableCollection<CustomerDTO>();
@@ -184,6 +185,9 @@ namespace FurnitureStoreApp.Viewmodel
                 purchaseService.add(currentPurchase);
                 loadPurchase();
                 loadCustomers();
+                loadData();
+                infoMessage = purchaseService.settingMessage();
+
             }
             catch (Exception)
             {
@@ -192,6 +196,7 @@ namespace FurnitureStoreApp.Viewmodel
             }
         }
 
+  
         public void addCustomer()
         {
             try
@@ -228,8 +233,18 @@ namespace FurnitureStoreApp.Viewmodel
 
         public void deletePurchase()
         {
-            purchaseService.delete(currentPurchase.PurchaseID, currentPurchase.CustomerID);
+            purchaseService.delete(currentPurchase.ProductID, currentPurchase.CustomerID);
             loadPurchase();
+            infoMessage = purchaseService.settingMessage();
+        }
+
+        public void editPurchase()
+        {
+            purchaseService.edit(currentPurchase);
+            loadPurchase();
+            loadData();
+            loadCustomers();
+            infoMessage = purchaseService.settingMessage();
         }
 
         public void searchCustomer()

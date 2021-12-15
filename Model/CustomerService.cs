@@ -29,7 +29,7 @@ namespace FurnitureStoreApp.Model
                     allCustomer.Add(new CustomerDTO
                     {
                         Name = item.Name,
-                        Date = DateTime.Now,
+                        Date = item.Date,
                         PurchaseID = item.PurchaseID,
                         FullPrice = item.FullPrice,
                     });
@@ -66,7 +66,7 @@ namespace FurnitureStoreApp.Model
             {
                 var customer = productDatabaseEntities.Customers.Find(customerToEdit.PurchaseID);
                 customer.Name = customerToEdit.Name;
-                customer.FullPrice = customerToEdit.FullPrice;
+         
 
                 productDatabaseEntities.SaveChanges();
 
