@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using FurnitureStoreApp.Viewmodel.Base;
+
+namespace FurnitureStoreApp.Model
+{
+    public class ProductDTO : BaseViewModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Manufacturer { get; set; }
+        public int? Quantity { get; set; }
+        public int Price { get; set; }
+        public int Width { get; set; }
+        public int Length { get; set; }
+        public int Height { get; set; }
+    }
+}
