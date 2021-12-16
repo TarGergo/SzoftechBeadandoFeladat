@@ -7,6 +7,52 @@
              mc:Ignorable="d" 
              d:DesignHeight="520" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Storage"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   Style="{StaticResource fontStyle}"/>
+        <DataGrid x:Name="dtGrd"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  Grid.Column="1" 
+                  Margin="5,8" 
+                  Padding="3"
+                  Foreground="#5DBEBE"
+                  Background="Transparent"
+                  
+                  ItemsSource="{Binding Path=Product, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" 
+                                    Width="auto"
+                                    Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Manufacturer" 
+                                    Width="auto"
+                                    Binding="{Binding Path=Manufacturer}" />
+                <DataGridTextColumn Header="Quantity" 
+                                    Width="auto"
+                                    Binding="{Binding Path=Quantity}" />
+                <DataGridTextColumn Header="Price"
+                                    Width="auto"
+                                    Binding="{Binding Path=Price}"/>
+                <DataGridTextColumn Header="Width" 
+                                    Width="auto"
+                                    Binding="{Binding Path=Width}"/>
+                <DataGridTextColumn Header="Length" 
+                                    Width="auto"
+                                    Binding="{Binding Path=Length}" />
+                <DataGridTextColumn Header="Height" 
+                                    Width="auto"
+                                    Binding="{Binding Path=Height}" />
+                </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
