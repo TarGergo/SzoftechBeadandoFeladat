@@ -139,6 +139,15 @@ namespace FurnitureStoreApp.Model
             return isDeleted;
         }
 
+        public void editIfPurchaseDeleted(int id, int quantity)
+        {
+            var product = ProductDatabaseEntities.Product.Find(id);
+            product.Quantity += quantity;
+            ProductDatabaseEntities.SaveChanges();
+        }
+
+        
+
         public ProductDTO search(int id)
         {
             ProductDTO productDTO = null;

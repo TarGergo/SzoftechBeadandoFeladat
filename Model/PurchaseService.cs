@@ -9,11 +9,15 @@ namespace FurnitureStoreApp.Model
     class PurchaseService
     {
         private ProductDatabaseEntities productDatabaseEntities;
+     
         private string Message;
-
+        public bool success { get; set; }
         public PurchaseService()
         {
             productDatabaseEntities = new ProductDatabaseEntities();
+
+//productService = new ProductService();
+            success = false;
         }
 
         public List<PurchaseDTO> getAllPurchase()
@@ -84,11 +88,13 @@ namespace FurnitureStoreApp.Model
                 if (quantity > realProduct.Quantity)
                 {
                     Message = "You dont even have that many item you bozo";
+                    success = false;
                 }
                 else
                 {
                     //realProduct.Quantity -= quantity;
-
+                    //productService.editIfPurchaseAdded(newPurchase.ProductID, newPurchase.Quantity);
+                    success = true;
                     productDatabaseEntities.Purchases.Add(purch);
                     productDatabaseEntities.SaveChanges();
 
@@ -102,6 +108,35 @@ namespace FurnitureStoreApp.Model
                 throw;
             }
         }
+
+        public PurchaseDTO searchPurchase(int id)
+        {
+            PurchaseDTO purchaseDTO = null;
+
+            try
+            {
+                var purchase = productDatabaseEntities.Purchases.Find(id);
+                if (purchase !=null)
+                {
+                    purchaseDTO = new PurchaseDTO()
+                    {
+                        Id = purchase.Id,
+                        CustomerID = purchase.CustomerID,
+                        ProductID = purchase.ProductID,
+                        Price = purchase.Price,
+                        Quantity = purchase.Quantity
+                    };
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return purchaseDTO;
+
+        } 
 
         public void delete(int idToDelete, int custId)
         {
@@ -132,33 +167,32 @@ namespace FurnitureStoreApp.Model
         {
             try
             {
-                var purchase = productDatabaseEntities.Purchases.Find(purchaseToEdit.Id);
-                int? productBought = purchase.Quantity; // 40 sold
-                purchase.Quantity = purchaseToEdit.Quantity;
+                var purchase = productDatabaseEntities.Purchases.Find(purchaseToEdit.Id); //Finding purchase -> we bought 4
+                int currentPurchaseQuantity = purchase.Quantity; // Here is the 4
+                purchase.Quantity = purchaseToEdit.Quantity; // New purchases quantity -> 4 to 6/4 to 2 -> NOT SAVED YET
+                var product = productDatabaseEntities.Product.Find(purchaseToEdit.ProductID); //The product (remaining units) ex: 10
+                int? newProductQuantity = product.Quantity + currentPurchaseQuantity; //So atm we have 14
+                                                                                      //Need to set the new quantity of the purchase. Need to decide if this is possible
+                                                                                      //Product modifying occur in another void
+                product.Quantity += currentPurchaseQuantity;
 
-                var product = from p in productDatabaseEntities.Product where p.Id == purchase.ProductID select p.Id;
-                int pid = product.Sum();
-                var realProduct = productDatabaseEntities.Product.Find(pid);
-                int? productLeft = realProduct.Quantity; //20 left. 40 sold. 40 -> 35 == 25 //20 left. 40 sold. 40 -> 45 == 15
-                realProduct.Quantity += productBought; // 60 at this point
-
-                var customer = from c in productDatabaseEntities.Customers where c.PurchaseID == purchase.CustomerID select c.PurchaseID;
-                int cid = customer.Sum();
-                var realCustomer = productDatabaseEntities.Customers.Find(cid);
-                realCustomer.FullPrice -= (int)productBought * purchase.Price;
-
-
-                if (purchaseToEdit.Quantity > realProduct.Quantity)
+                //  temporary product quantity (14) <  new purchase (ex: 8)
+                if (newProductQuantity < purchaseToEdit.Quantity)
                 {
-                    Message = "You cant buy more, if we dont have more";
+                    Message = "You cannot buy more, if we dont have more";
+                    success = false;
                 }
                 else
                 {
-                    realCustomer.FullPrice += purchase.Quantity * purchase.Price;
-                    realProduct.Quantity -= purchase.Quantity;
-                    Message = "Number of brought products successfully edited!";
+                    // product.Quantity -= purchaseToEdit.Quantity;
+            
+                    success = true;
+                    Message = currentPurchaseQuantity.ToString();
                     productDatabaseEntities.SaveChanges();
+                    //Here the purchase will be saved! Only the purchase!
                 }
+              
+                
 
             
        
