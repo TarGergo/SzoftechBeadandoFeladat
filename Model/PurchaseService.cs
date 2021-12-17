@@ -15,8 +15,6 @@ namespace FurnitureStoreApp.Model
         public PurchaseService()
         {
             productDatabaseEntities = new ProductDatabaseEntities();
-
-//productService = new ProductService();
             success = false;
         }
 
@@ -73,13 +71,13 @@ namespace FurnitureStoreApp.Model
 
                 int price = purch.Price;
                 int quantity = purch.Quantity;
-                var cust = from c in productDatabaseEntities.Customers where c.PurchaseID == purch.CustomerID select c.PurchaseID;
+           /*     var cust = from c in productDatabaseEntities.Customers where c.PurchaseID == purch.CustomerID select c.PurchaseID;
                 int cc = cust.Sum();
 
                 int priceOfALL = quantity * price;
 
                 var realCust = productDatabaseEntities.Customers.Find(cc);
-                realCust.FullPrice += priceOfALL;
+                realCust.FullPrice += priceOfALL;  */
 
                 var product = from p in productDatabaseEntities.Product where p.Id == purch.ProductID select p.Id;
                 int pid = product.Sum();
@@ -138,18 +136,16 @@ namespace FurnitureStoreApp.Model
 
         } 
 
-        public void delete(int idToDelete, int custId)
+        public void delete(int primaryid)
         {
-            var deletableProduct = from p in productDatabaseEntities.Purchases where p.ProductID == idToDelete && p.CustomerID == custId select p.Id;
-            int asd = deletableProduct.Sum();
-
-            var purchase = productDatabaseEntities.Purchases.Find(asd);
+           
+            var purchase = productDatabaseEntities.Purchases.Find(primaryid);
             productDatabaseEntities.Purchases.Remove(purchase);
 
             productDatabaseEntities.SaveChanges();
 
 
-            int price = purchase.Price;
+        /*   int price = purchase.Price;
             int quantity = purchase.Quantity;
             var cust = from c in productDatabaseEntities.Customers where c.PurchaseID == purchase.CustomerID select c.PurchaseID;
             int cid = cust.Sum();
@@ -157,7 +153,7 @@ namespace FurnitureStoreApp.Model
 
             var realCust = productDatabaseEntities.Customers.Find(cid);
             realCust.FullPrice -= priceOfAll;
-
+        */
             Message = "Purchase successfully removed!";
             productDatabaseEntities.SaveChanges();
 

@@ -56,7 +56,22 @@ namespace FurnitureStoreApp.Model
 
         }
 
+        public void editIfPurchaseAdded(PurchaseDTO purchase)
+        {
+            var customer = productDatabaseEntities.Customers.Find(purchase.CustomerID);
+            var product = productDatabaseEntities.Product.Find(purchase.ProductID);
 
+            customer.FullPrice += product.Price * purchase.Quantity;
+            productDatabaseEntities.SaveChanges();
+        }
+
+        public void editIfPurchaseDeleted(PurchaseDTO purchase)
+        {
+            var customer = productDatabaseEntities.Customers.Find(purchase.CustomerID);
+       
+
+            customer.FullPrice -= purchase.Price * purchase.Quantity;
+        }
         public void edit(CustomerDTO customerToEdit)
         {
             try

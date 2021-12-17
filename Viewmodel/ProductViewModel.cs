@@ -189,6 +189,7 @@ namespace FurnitureStoreApp.Viewmodel
                 if (purchaseService.success)
                 {
                     productService.editIfPurchaseAdded(currentPurchase.ProductID, currentPurchase.Quantity);
+                    customerService.editIfPurchaseAdded(currentPurchase);
                 }
 
                 loadPurchase();
@@ -241,12 +242,13 @@ namespace FurnitureStoreApp.Viewmodel
         public void deletePurchase()
         {
             searchPurchase();
-            purchaseService.delete(currentPurchase.ProductID, currentPurchase.CustomerID);
+            purchaseService.delete(currentPurchase.Id);
             productService.editIfPurchaseDeleted(currentPurchase.ProductID, currentPurchase.Quantity);
+            customerService.editIfPurchaseDeleted(currentPurchase);
             loadPurchase();
             loadData();
             loadCustomers();
-            infoMessage = purchaseService.settingMessage();
+            infoMessage = purchaseService.settingMessage(); 
         }
 
         public void searchCustomer()
