@@ -10,12 +10,12 @@
 namespace FurnitureStoreApp.Model
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class Purchases
     {
         public int Id { get; set; }
-        public int PurchaseID { get; set; }
+        public int ProductID { get; set; }
         public int CustomerID { get; set; }
         public int Quantity { get; set; }
         public int Price { get; set; }

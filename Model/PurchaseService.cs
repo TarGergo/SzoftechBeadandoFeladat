@@ -9,10 +9,13 @@ namespace FurnitureStoreApp.Model
     class PurchaseService
     {
         private ProductDatabaseEntities productDatabaseEntities;
-
+     
+        private string Message;
+        public bool success { get; set; }
         public PurchaseService()
         {
             productDatabaseEntities = new ProductDatabaseEntities();
+            success = false;
         }
 
         public List<PurchaseDTO> getAllPurchase()
@@ -29,7 +32,8 @@ namespace FurnitureStoreApp.Model
                 {
                     purchaseDTOs.Add(new PurchaseDTO
                     {
-                        PurchaseID = p.PurchaseID,
+                        Id = p.Id,
+                        ProductID = p.ProductID,
                         CustomerID = p.CustomerID,
                         Quantity = p.Quantity,
                         Price = p.Price
@@ -45,38 +49,55 @@ namespace FurnitureStoreApp.Model
             return purchaseDTOs;
         }
 
+        public string settingMessage()
+        {
+            return Message;
+        }
+
         public void add(PurchaseDTO newPurchase)
         {
             try
             {
                 var purchashedProduct = new Product();
-                var pr = from p in productDatabaseEntities.Product where p.Id == newPurchase.PurchaseID  select p.Price;
+                var pr = from p in productDatabaseEntities.Product where p.Id == newPurchase.ProductID  select p.Price;
                
                 purchashedProduct.Price = pr.Sum();
 
-
                 var purch = new Purchases();
                 purch.CustomerID = newPurchase.CustomerID;
-                purch.PurchaseID = newPurchase.PurchaseID;
+                purch.ProductID = newPurchase.ProductID;
                 purch.Price = purchashedProduct.Price;
                 purch.Quantity = newPurchase.Quantity;
 
-                productDatabaseEntities.Purchases.Add(purch);
-                productDatabaseEntities.SaveChanges();
-
                 int price = purch.Price;
                 int quantity = purch.Quantity;
-                var cust = from c in productDatabaseEntities.Customers where c.PurchaseID == purch.CustomerID select c.PurchaseID;
+           /*     var cust = from c in productDatabaseEntities.Customers where c.PurchaseID == purch.CustomerID select c.PurchaseID;
                 int cc = cust.Sum();
-                CustomerDTO customerDTO = new CustomerDTO();
-                customerDTO.FullPrice = quantity * price;
+
+                int priceOfALL = quantity * price;
 
                 var realCust = productDatabaseEntities.Customers.Find(cc);
-                realCust.FullPrice += customerDTO.FullPrice;
-                
+                realCust.FullPrice += priceOfALL;  */
 
-                productDatabaseEntities.SaveChanges();
+                var product = from p in productDatabaseEntities.Product where p.Id == purch.ProductID select p.Id;
+                int pid = product.Sum();
 
+                var realProduct = productDatabaseEntities.Product.Find(pid);
+                if (quantity > realProduct.Quantity)
+                {
+                    Message = "You dont even have that many item you bozo";
+                    success = false;
+                }
+                else
+                {
+                    //realProduct.Quantity -= quantity;
+                    //productService.editIfPurchaseAdded(newPurchase.ProductID, newPurchase.Quantity);
+                    success = true;
+                    productDatabaseEntities.Purchases.Add(purch);
+                    productDatabaseEntities.SaveChanges();
+
+                    Message = "Success";
+                }
 
             }
             catch (Exception)
@@ -86,16 +107,97 @@ namespace FurnitureStoreApp.Model
             }
         }
 
-        public void delete(int idToDelete, int custId)
+        public PurchaseDTO searchPurchase(int id)
         {
-            var deletableProduct = from p in productDatabaseEntities.Purchases where p.PurchaseID == idToDelete && p.CustomerID == custId select p.Id;
-            int asd = deletableProduct.Sum();
+            PurchaseDTO purchaseDTO = null;
 
-            var purchase = productDatabaseEntities.Purchases.Find(asd);
+            try
+            {
+                var purchase = productDatabaseEntities.Purchases.Find(id);
+                if (purchase !=null)
+                {
+                    purchaseDTO = new PurchaseDTO()
+                    {
+                        Id = purchase.Id,
+                        CustomerID = purchase.CustomerID,
+                        ProductID = purchase.ProductID,
+                        Price = purchase.Price,
+                        Quantity = purchase.Quantity
+                    };
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return purchaseDTO;
+
+        } 
+
+        public void delete(int primaryid)
+        {
+           
+            var purchase = productDatabaseEntities.Purchases.Find(primaryid);
             productDatabaseEntities.Purchases.Remove(purchase);
 
             productDatabaseEntities.SaveChanges();
 
+
+        /*   int price = purchase.Price;
+            int quantity = purchase.Quantity;
+            var cust = from c in productDatabaseEntities.Customers where c.PurchaseID == purchase.CustomerID select c.PurchaseID;
+            int cid = cust.Sum();
+            int priceOfAll = quantity * price;
+
+            var realCust = productDatabaseEntities.Customers.Find(cid);
+            realCust.FullPrice -= priceOfAll;
+        */
+            Message = "Purchase successfully removed!";
+            productDatabaseEntities.SaveChanges();
+
+        }
+
+        public void edit(PurchaseDTO purchaseToEdit)
+        {
+            try
+            {
+                var purchase = productDatabaseEntities.Purchases.Find(purchaseToEdit.Id); //Finding purchase -> we bought 4
+                int currentPurchaseQuantity = purchase.Quantity; // Here is the 4
+                purchase.Quantity = purchaseToEdit.Quantity; // New purchases quantity -> 4 to 6/4 to 2 -> NOT SAVED YET
+                var product = productDatabaseEntities.Product.Find(purchaseToEdit.ProductID); //The product (remaining units) ex: 10
+                int? newProductQuantity = product.Quantity + currentPurchaseQuantity; //So atm we have 14
+                                                                                      //Need to set the new quantity of the purchase. Need to decide if this is possible
+                                                                                      //Product modifying occur in another void
+                product.Quantity += currentPurchaseQuantity;
+
+                //  temporary product quantity (14) <  new purchase (ex: 8)
+                if (newProductQuantity < purchaseToEdit.Quantity)
+                {
+                    Message = "You cannot buy more, if we dont have more";
+                    success = false;
+                }
+                else
+                {
+                    // product.Quantity -= purchaseToEdit.Quantity;
+            
+                    success = true;
+                    Message = currentPurchaseQuantity.ToString();
+                    productDatabaseEntities.SaveChanges();
+                    //Here the purchase will be saved! Only the purchase!
+                }
+              
+                
+
+            
+       
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
 

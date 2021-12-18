@@ -29,7 +29,7 @@ namespace FurnitureStoreApp.Model
                     allCustomer.Add(new CustomerDTO
                     {
                         Name = item.Name,
-                        Date = DateTime.Now,
+                        Date = item.Date,
                         PurchaseID = item.PurchaseID,
                         FullPrice = item.FullPrice,
                     });
@@ -40,9 +40,6 @@ namespace FurnitureStoreApp.Model
 
                 throw;
             }
-
-
-
             return allCustomer;
         }
   
@@ -59,23 +56,32 @@ namespace FurnitureStoreApp.Model
 
         }
 
+        public void editIfPurchaseAdded(PurchaseDTO purchase)
+        {
+            var customer = productDatabaseEntities.Customers.Find(purchase.CustomerID);
+            var product = productDatabaseEntities.Product.Find(purchase.ProductID);
 
+            customer.FullPrice += product.Price * purchase.Quantity;
+            productDatabaseEntities.SaveChanges();
+        }
+
+        public void editIfPurchaseDeleted(PurchaseDTO purchase)
+        {
+            var customer = productDatabaseEntities.Customers.Find(purchase.CustomerID);
+       
+
+            customer.FullPrice -= purchase.Price * purchase.Quantity;
+        }
         public void edit(CustomerDTO customerToEdit)
         {
             try
             {
                 var customer = productDatabaseEntities.Customers.Find(customerToEdit.PurchaseID);
                 customer.Name = customerToEdit.Name;
-                customer.FullPrice = customerToEdit.FullPrice;
-
                 productDatabaseEntities.SaveChanges();
-
-
-
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -84,10 +90,7 @@ namespace FurnitureStoreApp.Model
         {
             var customer = productDatabaseEntities.Customers.Find(idToDelete);
             productDatabaseEntities.Customers.Remove(customer);
-
             productDatabaseEntities.SaveChanges();
-
-
         }
 
         public CustomerDTO search(int idToFind)

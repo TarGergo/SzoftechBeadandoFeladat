@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FurnitureStoreApp"
+        xmlns:view ="clr-namespace:FurnitureStoreApp.View"
         mc:Ignorable="d"
         Title="MainWindow"
             Height="600" 
@@ -56,6 +57,22 @@
                     <ImageBrush ImageSource="Assets/close.png"/>
                 </Button.Background>
             </Button>
+            <view:StorageView
+                x:Name="sView"
+                Grid.Column="1"
+                Grid.Row="1"
+                />
+            <view:CostumerListView
+                x:Name="cLView"
+                Grid.Column="1"
+                Grid.Row="1"
+                />
+            <view:NewCostumerView
+                x:Name="nCView"
+                Grid.Column="1"
+                Grid.Row="1"
+                />
+            
             
         </Grid>
         
@@ -116,7 +133,9 @@
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
                     <ListViewItem HorizontalAlignment="Left"
-                          Margin="0,10,0,15" MouseEnter="ListViewItem_MouseEnter">
+                          Margin="0,10,0,15" MouseEnter="ListViewItem_MouseEnter"
+                          GotFocus="ListViewItem_GotFocus"
+                          >
                         <StackPanel Orientation="Horizontal"
                             Width="230"
                             Height="40">
@@ -131,19 +150,20 @@
                         <ListViewItem.ToolTip>
                             <ToolTip x:Name="tltCostumer"
                              Content="Costumer"
-                             Style="{StaticResource tltpStyle}"/>
+                             Style="{StaticResource tltpStyle}"
+                         />
                         </ListViewItem.ToolTip>
                         
                         
                         
                         
                     </ListViewItem>
-         
+
 
 
 
                     <ListViewItem HorizontalAlignment="Left"
-                          Margin="0,10,0,15" MouseEnter="ListViewItem_MouseEnter">
+                                  GotFocus="ListViewItem_GotFocus_1">
                         <StackPanel Orientation="Horizontal"
                             Width="230"
                             Height="40">
@@ -165,7 +185,8 @@
 
                     </ListViewItem>
                     <ListViewItem HorizontalAlignment="Left"
-                          Margin="0,10,0,15" MouseEnter="ListViewItem_MouseEnter">
+                          Margin="0,10,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                  GotFocus="ListViewItem_GotFocus_2">
                         <StackPanel Orientation="Horizontal"
                             Width="230"
                             Height="40">
@@ -182,7 +203,7 @@
                              Style="{StaticResource tltpStyle}"/>
                         </ListViewItem.ToolTip>
 
-
+        
 
 
                     </ListViewItem>

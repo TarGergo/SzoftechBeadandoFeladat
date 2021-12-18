@@ -29,7 +29,7 @@
                   Foreground="#5DBEBE"
                   Background="Transparent"
                   
-                  ItemsSource="{Binding Path=Product, Mode=TwoWay}">
+                  ItemsSource="{Binding Path=Products, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" 
                                     Width="auto"

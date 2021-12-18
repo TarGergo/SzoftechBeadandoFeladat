@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FurnitureStoreApp.Viewmodel;
 
 namespace FurnitureStoreApp.View
 {
@@ -20,9 +21,13 @@ namespace FurnitureStoreApp.View
     /// </summary>
     public partial class NewCostumerView : UserControl
     {
+        ProductViewModel productViewModel;
         public NewCostumerView()
         {
             InitializeComponent();
+            productViewModel = new ProductViewModel();
         }
+
+        
     }
 }

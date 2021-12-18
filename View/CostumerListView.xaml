@@ -30,7 +30,7 @@
                   Foreground="#5DBEBE"
                   Background="Transparent"
                   
-                  ItemsSource="{Binding Path=Purchases, Mode=TwoWay}">
+                  ItemsSource="{Binding Path=Customers, Mode=TwoWay}">
                 <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" 
                                     Width="auto"

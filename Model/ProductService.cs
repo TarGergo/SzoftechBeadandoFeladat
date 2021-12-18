@@ -109,6 +109,14 @@ namespace FurnitureStoreApp.Model
             return isEdited;
         }
 
+        public void editIfPurchaseAdded(int id, int quantity)
+        {
+            var product = ProductDatabaseEntities.Product.Find(id);
+            product.Quantity -= quantity;
+            ProductDatabaseEntities.SaveChanges();
+            
+        }
+
         public bool delete(int idToDelete)
         {
             bool isDeleted = false;
@@ -130,6 +138,15 @@ namespace FurnitureStoreApp.Model
 
             return isDeleted;
         }
+
+        public void editIfPurchaseDeleted(int id, int quantity)
+        {
+            var product = ProductDatabaseEntities.Product.Find(id);
+            product.Quantity += quantity;
+            ProductDatabaseEntities.SaveChanges();
+        }
+
+        
 
         public ProductDTO search(int id)
         {

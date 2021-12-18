@@ -7,6 +7,78 @@
              mc:Ignorable="d" 
              d:DesignHeight="520" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="New Costumer's shopping data"
+                   Style="{StaticResource fontStyle }"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   VerticalAlignment="Top"/>
+        <TextBlock/>
+        <TextBlock Text="Customer's Name:"
+                   Style="{StaticResource fontStyle }"
+                   HorizontalAlignment="Right"
+                   Grid.Column="0"
+                   Grid.Row="1"/>
+        <TextBlock/>
+        <TextBox x:Name="txtBxName"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Foreground="#5DBEBE"
+                 Background="Transparent"
+                 BorderThickness="0.5"
+                 BorderBrush="#5DBEBE"
+                 TextAlignment="Center"
+                 Height="20.5"
+                 Width="250"
+                 HorizontalAlignment="Left"
+                 >
+            <Binding x:Name="binding" Mode="TwoWay" Path="currentCustomer.Name"/>
+        </TextBox>
+        <TextBlock Text="PurchaseID"
+                   Style="{StaticResource fontStyle }"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   HorizontalAlignment="Right"/>
+        <TextBox 
+                 Text="{Binding Path=currentCustomer.PurchaseID, Mode=TwoWay}"
+                 Grid.Column="1"
+                 Grid.Row="2"/>
+        <TextBox  Text="{Binding Path=currentCustomer.Name, Mode=TwoWay}"
+                  Grid.Column="1"
+                  Grid.Row="1"/>
+        <TextBox  Text="{Binding Path=currentCustomer.FullPrice, Mode=TwoWay}"
+                   Grid.Column="1"
+                  Grid.Row="3"/>
+
+        <TextBlock Text="Full Price"
+                   Style="{StaticResource fontStyle }"
+                   Grid.Column="0"
+                   Grid.Row="3"
+                   HorizontalAlignment="Right"/>
+
+        <TextBlock Grid.Row="4"
+                   Grid.ColumnSpan="2"
+                   Text="{Binding Path=infoMessage }"/>
+        <Button Command="{Binding Path=addCustomerCommand}" 
+                Height="20" 
+                Width="100" 
+                HorizontalAlignment="Right" 
+                Content="Customer"
+                Grid.Column="1"
+                Grid.Row="5"
+                />
     </Grid>
 </UserControl>

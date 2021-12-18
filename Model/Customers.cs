@@ -10,14 +10,14 @@
 namespace FurnitureStoreApp.Model
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class Customers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customers()
         {
-            this.Purchases = new ObservableCollection<Purchases>();
+            this.Purchases = new HashSet<Purchases>();
         }
     
         public string Name { get; set; }
@@ -26,6 +26,6 @@ namespace FurnitureStoreApp.Model
         public int FullPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Purchases> Purchases { get; set; }
+        public virtual ICollection<Purchases> Purchases { get; set; }
     }
 }
