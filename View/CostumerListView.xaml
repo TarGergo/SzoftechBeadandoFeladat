@@ -46,5 +46,28 @@
                                     Binding="{Binding Path=FullPrice}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Command="{Binding Path=deleteCustomerCommand}" 
+                Height="20" 
+                Width="150" 
+                HorizontalAlignment="Left" 
+                Content="Delete Customer"
+                Grid.Column="1"
+                Grid.Row="2"
+                Foreground="#5DBEBE"/>
+        <Button Command="{Binding Path=searchCustomerCommand}" 
+                Height="20" 
+                Width="150" 
+                HorizontalAlignment="Right" 
+                Content="Search/Pdf Customer"
+                Grid.Column="1"
+                Grid.Row="2"
+                Foreground="#5DBEBE"/>
+        <TextBox Width="100" 
+                 HorizontalAlignment="Center" 
+                 Text="{Binding Path=currentCustomer.PurchaseID, Mode=TwoWay}"
+                 Grid.Column="1"
+                 Grid.Row="3"></TextBox>
+        
+      
     </Grid>
 </UserControl>

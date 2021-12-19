@@ -148,8 +148,7 @@ namespace FurnitureStoreApp.Viewmodel
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                infoMessage = ex.Message;
             }
         }
         private void search()
@@ -230,12 +229,13 @@ namespace FurnitureStoreApp.Viewmodel
         {
             try
             {
+                
                 customerService.delete(currentCustomer.PurchaseID);
                 loadCustomers();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                errorMessage = ex.Message;
             }
         }
 
@@ -275,6 +275,8 @@ namespace FurnitureStoreApp.Viewmodel
 
         }
 
+        
+        
 
     }
 }
