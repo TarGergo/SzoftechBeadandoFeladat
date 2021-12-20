@@ -11,6 +11,8 @@ namespace FurnitureStoreApp.Model
         private ProductDatabaseEntities productDatabaseEntities;
      
         private string Message;
+        private string infoMessage;
+
         public bool success { get; set; }
         public PurchaseService()
         {
@@ -41,10 +43,11 @@ namespace FurnitureStoreApp.Model
                     
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                infoMessage = ex.Message;
+              
             }
             return purchaseDTOs;
         }
@@ -100,10 +103,10 @@ namespace FurnitureStoreApp.Model
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                infoMessage = ex.Message;
             }
         }
 
@@ -126,10 +129,10 @@ namespace FurnitureStoreApp.Model
                     };
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                infoMessage = ex.Message;
             }
 
             return purchaseDTO;
@@ -196,7 +199,7 @@ namespace FurnitureStoreApp.Model
             catch (Exception ex)
             {
 
-                throw ex;
+                infoMessage = ex.Message;
             }
         }
 

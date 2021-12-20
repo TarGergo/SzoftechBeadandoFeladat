@@ -10,6 +10,7 @@ namespace FurnitureStoreApp.Model
     class CustomerService
     {
         private ProductDatabaseEntities productDatabaseEntities;
+        private string infoMessage;
 
         public CustomerService()
         {
@@ -35,10 +36,10 @@ namespace FurnitureStoreApp.Model
                     });
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                infoMessage = ex.Message;
             }
             return allCustomer;
         }
@@ -80,9 +81,10 @@ namespace FurnitureStoreApp.Model
                 customer.Name = customerToEdit.Name;
                 productDatabaseEntities.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+
+                infoMessage = ex.Message;
             }
         }
 
@@ -112,10 +114,10 @@ namespace FurnitureStoreApp.Model
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                infoMessage = ex.Message;
             }
 
 

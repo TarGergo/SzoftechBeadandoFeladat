@@ -115,6 +115,7 @@
                 Content="Edit product"
                 Grid.Column="1"
                 Grid.Row="6"
-                HorizontalAlignment="Right"/>
+                HorizontalAlignment="Right"
+                Foreground="#5DBEBE"/>
     </Grid>
 </UserControl>

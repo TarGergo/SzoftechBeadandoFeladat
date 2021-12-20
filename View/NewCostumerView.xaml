@@ -59,7 +59,7 @@
                 Content="Save Customer"
                 Grid.Column="1"
                 Grid.Row="3"
-               
+                Foreground="#5DBEBE"
             
             ></Button>
 
@@ -161,10 +161,16 @@
                 Content="Save Purchases"
                 Grid.Column="1"
                 Grid.Row="10"
-              
-                Command="{Binding Path=addPurchaseCommand}"
-            
-            ></Button>
-      
+                Foreground="#5DBEBE"
+                Command="{Binding Path=addPurchaseCommand}"/>
+        <Button Command="{Binding Path=searchCustomerCommand}"
+                Content="Save to Pdf"
+                Grid.Column="0"
+                Grid.Row="10"
+                Foreground="#5DBEBE"/>
+
+
+
+
     </Grid>
 </UserControl>

@@ -32,6 +32,8 @@ namespace FurnitureStoreApp
             cLView.Visibility = Visibility.Collapsed;
             nCView.Visibility = Visibility.Collapsed;
             sView.Visibility = Visibility.Collapsed;
+            pLView.Visibility = Visibility.Collapsed;
+
         }
 
         private void closeBttn_Click(object sender, RoutedEventArgs e)
@@ -60,6 +62,7 @@ namespace FurnitureStoreApp
                 tltCostumer.Visibility = Visibility.Collapsed;
                 tltNewCostumer.Visibility = Visibility.Collapsed;
                 tltStorage.Visibility = Visibility.Collapsed;
+                tltPurchase.Visibility = Visibility.Collapsed;
 
             }
             else
@@ -67,6 +70,7 @@ namespace FurnitureStoreApp
                 tltCostumer.Visibility = Visibility.Visible;
                 tltNewCostumer.Visibility = Visibility.Visible;
                 tltStorage.Visibility = Visibility.Visible;
+                tltPurchase.Visibility = Visibility.Visible;
 
             }
         }
@@ -76,14 +80,20 @@ namespace FurnitureStoreApp
             cLView.Visibility = Visibility.Visible;
             nCView.Visibility = Visibility.Collapsed;
             sView.Visibility = Visibility.Collapsed;
+            pLView.Visibility = Visibility.Collapsed;
+           
+        
 
-        }
+
+    }
 
         private void ListViewItem_GotFocus_1(object sender, RoutedEventArgs e)
         {
             cLView.Visibility = Visibility.Collapsed;
             nCView.Visibility = Visibility.Visible;
             sView.Visibility = Visibility.Collapsed;
+            pLView.Visibility = Visibility.Collapsed;
+
         }
 
         private void ListViewItem_GotFocus_2(object sender, RoutedEventArgs e)
@@ -91,6 +101,15 @@ namespace FurnitureStoreApp
             cLView.Visibility = Visibility.Collapsed;
             nCView.Visibility = Visibility.Collapsed;
             sView.Visibility = Visibility.Visible;
+            pLView.Visibility = Visibility.Collapsed;
+        }
+
+        private void ListViewItem_GotFocus_3(object sender, RoutedEventArgs e)
+        {
+            cLView.Visibility = Visibility.Collapsed;
+            nCView.Visibility = Visibility.Collapsed;
+            sView.Visibility = Visibility.Collapsed;
+            pLView.Visibility = Visibility.Visible;
         }
     }
 }

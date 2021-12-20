@@ -11,7 +11,8 @@ namespace FurnitureStoreApp.Model
     public class ProductService
     {
         private ProductDatabaseEntities ProductDatabaseEntities;
-      
+        private string infoMessage;
+
         public ProductService()
         {
             ProductDatabaseEntities = new ProductDatabaseEntities();
@@ -44,7 +45,7 @@ namespace FurnitureStoreApp.Model
             catch (Exception ex)
             {
 
-                throw ex;
+                infoMessage = ex.Message;
             }
 
             return productDTOs;
@@ -74,7 +75,7 @@ namespace FurnitureStoreApp.Model
             catch (Exception ex)
             {
 
-                throw ex;
+                infoMessage = ex.Message;
             }
 
             return isAdded;
@@ -103,7 +104,7 @@ namespace FurnitureStoreApp.Model
             catch (Exception ex)
             {
 
-                throw ex;
+                infoMessage = ex.Message;
             }
 
             return isEdited;
@@ -133,7 +134,7 @@ namespace FurnitureStoreApp.Model
             catch (Exception ex)
             {
 
-                throw ex;
+                infoMessage = ex.Message;
             }
 
             return isDeleted;
@@ -175,7 +176,7 @@ namespace FurnitureStoreApp.Model
             catch (Exception ex)
             {
 
-                throw ex;
+                infoMessage = ex.Message;
             }
 
             return productDTO;

@@ -11,7 +11,7 @@
             Width="1000" 
             WindowStartupLocation="CenterScreen"
             ResizeMode="NoResize"
-            Topmost="True"
+          
             WindowStyle="None">
     <Grid>
         <Grid Background="#B7C3C4">
@@ -72,6 +72,12 @@
                 Grid.Column="1"
                 Grid.Row="1"
                 />
+            <view:PurchasesListView
+                x:Name="pLView"
+                Grid.Column="1"
+                Grid.Row="1"
+                />
+           
             
             
         </Grid>
@@ -153,15 +159,11 @@
                              Style="{StaticResource tltpStyle}"
                          />
                         </ListViewItem.ToolTip>
-                        
-                        
-                        
-                        
+
+
+
+
                     </ListViewItem>
-
-
-
-
                     <ListViewItem HorizontalAlignment="Left"
                                   GotFocus="ListViewItem_GotFocus_1">
                         <StackPanel Orientation="Horizontal"
@@ -181,6 +183,29 @@
                         </ListViewItem.ToolTip>
 
 
+
+
+                    </ListViewItem>
+                    <ListViewItem HorizontalAlignment="Left"
+                          Margin="0,10,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                  GotFocus="ListViewItem_GotFocus_3">
+                        <StackPanel Orientation="Horizontal"
+                            Width="230"
+                            Height="40">
+                            <Image Source="Assets/purchase.png"
+                           Stretch="Fill"
+                           Margin="12,0,0,0"/>
+                            <TextBlock Text="Purchases"
+                                       Margin="25,5,0,0"
+                                       Style="{StaticResource fontStyle}"/>
+                        </StackPanel>
+                        <ListViewItem.ToolTip>
+                            <ToolTip x:Name="tltPurchase"
+                             Content="Purchase"
+                             Style="{StaticResource tltpStyle}"/>
+                        </ListViewItem.ToolTip>
+
+        
 
 
                     </ListViewItem>

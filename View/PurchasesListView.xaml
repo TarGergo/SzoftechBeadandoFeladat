@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="FurnitureStoreApp.View.PurchasesListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FurnitureStoreApp.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+
+        </Grid.RowDefinitions>
+        <TextBlock Text="Purchase"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   Style="{StaticResource fontStyle}"/>
+        <DataGrid x:Name="dtGrd"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  Grid.Column="1" 
+                  Margin="5,8" 
+                  Padding="3"
+                  Foreground="#5DBEBE"
+                  Background="Transparent"
+                  
+                  ItemsSource="{Binding Path=Purchases, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" 
+                                    Width="auto"
+                                    Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn Header="Customer ID" 
+                                    Width="auto"
+                                    Binding="{Binding Path=CustomerID}" />
+                <DataGridTextColumn Header="Product ID" 
+                                    Width="auto"
+                                    Binding="{Binding Path=ProductID}" />
+                <DataGridTextColumn Header="Price"
+                                    Width="auto"
+                                    Binding="{Binding Path=Price}"/>
+                <DataGridTextColumn Header="Quantity" 
+                                    Width="auto"
+                                    Binding="{Binding Path=Quantity}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="Id"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   Style="{StaticResource ResourceKey=fontStyle}"/>
+        <TextBox Text="{Binding Path=currentPurchase.Id, Mode=TwoWay}"
+                 Style="{StaticResource textBoxStyle}"
+                 Grid.Column="1"
+                 Grid.Row="2"
+                 />
+        <Button Command="{Binding Path=deletePurchaseCommand}" 
+                Height="20" Width="100" 
+                HorizontalAlignment="Right" 
+                Content="Delete purchase"
+                Grid.Column="1"
+                Grid.Row="3"
+                Foreground="#5DBEBE"/>
+    </Grid>
+</UserControl>
