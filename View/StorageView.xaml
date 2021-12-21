@@ -20,6 +20,10 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+
 
         </Grid.RowDefinitions>
         <TextBlock Text="Storage"
@@ -103,18 +107,58 @@
                  Grid.Column="1"
                  Grid.Row="5"
                  Style="{StaticResource textBoxStyle}"/>
+        <TextBlock Text="Width"
+                   Grid.Column="0"
+                   Grid.Row="6"
+                   HorizontalAlignment="Right"
+                   Style="{StaticResource fontStyle}"/>
+        <TextBox Width="100" 
+                 HorizontalAlignment="Left" 
+                 Text="{Binding Path=currentProduct.Width, Mode=TwoWay}"
+                 Grid.Column="1"
+                 Grid.Row="6"
+                 Style="{StaticResource textBoxStyle}"/>
+        <TextBlock Text="Length"
+                   Grid.Column="0"
+                   Grid.Row="7"
+                   HorizontalAlignment="Right"
+                   Style="{StaticResource fontStyle}"/>
+        <TextBox Width="100" 
+                 HorizontalAlignment="Left" 
+                 Text="{Binding Path=currentProduct.Length, Mode=TwoWay}"
+                 Grid.Column="1"
+                 Grid.Row="7"
+                 Style="{StaticResource textBoxStyle}"/>
+        <TextBlock Text="Height"
+                   Grid.Column="0"
+                   Grid.Row="8"
+                   HorizontalAlignment="Right"
+                   Style="{StaticResource fontStyle}"/>
+        <TextBox Width="100" 
+                 HorizontalAlignment="Left" 
+                 Text="{Binding Path=currentProduct.Height, Mode=TwoWay}"
+                 Grid.Column="1"
+                 Grid.Row="8"
+                 Style="{StaticResource textBoxStyle}"/>
         <Button Command="{Binding Path=addProductCommand}" 
                 Width="100" 
                 Content="Add Product"
                 Grid.Column="1"
-                Grid.Row="6"
-                HorizontalAlignment="Left"/>
-        
+                Grid.Row="9"
+                HorizontalAlignment="Left"
+                 Foreground="#5DBEBE"/>
+        <Button Command="{Binding Path=deleteProductCommand}" 
+                Width="100"  
+                Content="Delete product"
+                Grid.Column="1"
+                Grid.Row="9"
+                HorizontalAlignment="Center"
+                Foreground="#5DBEBE"/>
         <Button Command="{Binding Path=editProductCommand}" 
                 Width="100"  
                 Content="Edit product"
                 Grid.Column="1"
-                Grid.Row="6"
+                Grid.Row="9"
                 HorizontalAlignment="Right"
                 Foreground="#5DBEBE"/>
     </Grid>

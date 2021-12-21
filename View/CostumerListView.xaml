@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FurnitureStoreApp.View"
              mc:Ignorable="d" 
              d:DesignHeight="520" d:DesignWidth="800">
-    <Grid Margin="100,0,100,0">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
@@ -18,7 +18,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Customer's List"
-                   Grid.Column="1"
+                   Grid.Column="0"
                    Grid.Row="0"
                    Style="{StaticResource fontStyle}"/>
         <DataGrid x:Name="dtGrd"
@@ -46,13 +46,22 @@
                                     Binding="{Binding Path=FullPrice}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <TextBlock Text="Purchase ID"
+                   Style="{StaticResource fontStyle}"
+                   Grid.Column="0"
+                   Grid.Row="2"></TextBlock>
+        <TextBox Width="100" 
+                 HorizontalAlignment="Left" 
+                 Text="{Binding Path=currentCustomer.PurchaseID, Mode=TwoWay}"
+                 Grid.Column="1"
+                 Grid.Row="2"></TextBox>
         <Button Command="{Binding Path=deleteCustomerCommand}" 
                 Height="20" 
                 Width="150" 
                 HorizontalAlignment="Left" 
                 Content="Delete Customer"
                 Grid.Column="1"
-                Grid.Row="2"
+                Grid.Row="3"
                 Foreground="#5DBEBE"/>
         <Button Command="{Binding Path=searchCustomerCommand}" 
                 Height="20" 
@@ -60,13 +69,9 @@
                 HorizontalAlignment="Right" 
                 Content="Search/Pdf Customer"
                 Grid.Column="1"
-                Grid.Row="2"
+                Grid.Row="3"
                 Foreground="#5DBEBE"/>
-        <TextBox Width="100" 
-                 HorizontalAlignment="Center" 
-                 Text="{Binding Path=currentCustomer.PurchaseID, Mode=TwoWay}"
-                 Grid.Column="1"
-                 Grid.Row="3"></TextBox>
+       
         
       
     </Grid>
