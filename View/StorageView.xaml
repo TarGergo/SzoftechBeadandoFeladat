@@ -23,6 +23,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
 
 
         </Grid.RowDefinitions>
@@ -64,101 +65,112 @@
                                     Binding="{Binding Path=Height}" />
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Text="Name"
+        <TextBlock Text="Id"
                    Grid.Column="0"
                    Grid.Row="2"
                    HorizontalAlignment="Right"
                    Style="{StaticResource fontStyle}"/>
         <TextBox Width="100" 
                  HorizontalAlignment="Left" 
-                 Text="{Binding Path=currentProduct.Name, Mode=TwoWay}"
+                 Text="{Binding Path=currentProduct.Id, Mode=TwoWay}"
                  Grid.Column="1"
                  Grid.Row="2"
                  Style="{StaticResource textBoxStyle}"/>
-        <TextBlock Text="Manufacturer"
+        <TextBlock Text="Name"
                    Grid.Column="0"
                    Grid.Row="3"
+                   HorizontalAlignment="Right"
+                   Style="{StaticResource fontStyle}"/>
+        <TextBox Width="100" 
+                 HorizontalAlignment="Left" 
+                 Text="{Binding Path=currentProduct.Name, Mode=TwoWay}"
+                 Grid.Column="1"
+                 Grid.Row="3"
+                 Style="{StaticResource textBoxStyle}"/>
+        <TextBlock Text="Manufacturer"
+                   Grid.Column="0"
+                   Grid.Row="4"
                    Style="{StaticResource fontStyle}"/>
         <TextBox Width="100" 
                  HorizontalAlignment="Left" 
                  Text="{Binding Path=currentProduct.Manufacturer ,Mode=TwoWay}"
                  Grid.Column="1"
-                 Grid.Row="3"
-                 Style="{StaticResource textBoxStyle}"/>
-        <TextBlock Text="Price"
-                   Grid.Column="0"
-                   Grid.Row="4"
-                   HorizontalAlignment="Right"
-                   Style="{StaticResource fontStyle}"/>
-        <TextBox Width="100" 
-                 HorizontalAlignment="Left" 
-                 Text="{Binding Path=currentProduct.Price, Mode=TwoWay}"
-                 Grid.Column="1"
                  Grid.Row="4"
                  Style="{StaticResource textBoxStyle}"/>
-        <TextBlock Text="Quantity"
+        <TextBlock Text="Price"
                    Grid.Column="0"
                    Grid.Row="5"
                    HorizontalAlignment="Right"
                    Style="{StaticResource fontStyle}"/>
         <TextBox Width="100" 
                  HorizontalAlignment="Left" 
-                 Text="{Binding Path=currentProduct.Quantity, Mode=TwoWay}"
+                 Text="{Binding Path=currentProduct.Price, Mode=TwoWay}"
                  Grid.Column="1"
                  Grid.Row="5"
                  Style="{StaticResource textBoxStyle}"/>
-        <TextBlock Text="Width"
+        <TextBlock Text="Quantity"
                    Grid.Column="0"
                    Grid.Row="6"
                    HorizontalAlignment="Right"
                    Style="{StaticResource fontStyle}"/>
         <TextBox Width="100" 
                  HorizontalAlignment="Left" 
-                 Text="{Binding Path=currentProduct.Width, Mode=TwoWay}"
+                 Text="{Binding Path=currentProduct.Quantity, Mode=TwoWay}"
                  Grid.Column="1"
                  Grid.Row="6"
                  Style="{StaticResource textBoxStyle}"/>
-        <TextBlock Text="Length"
+        <TextBlock Text="Width"
                    Grid.Column="0"
                    Grid.Row="7"
                    HorizontalAlignment="Right"
                    Style="{StaticResource fontStyle}"/>
         <TextBox Width="100" 
                  HorizontalAlignment="Left" 
-                 Text="{Binding Path=currentProduct.Length, Mode=TwoWay}"
+                 Text="{Binding Path=currentProduct.Width, Mode=TwoWay}"
                  Grid.Column="1"
                  Grid.Row="7"
                  Style="{StaticResource textBoxStyle}"/>
-        <TextBlock Text="Height"
+        <TextBlock Text="Length"
                    Grid.Column="0"
                    Grid.Row="8"
                    HorizontalAlignment="Right"
                    Style="{StaticResource fontStyle}"/>
         <TextBox Width="100" 
                  HorizontalAlignment="Left" 
-                 Text="{Binding Path=currentProduct.Height, Mode=TwoWay}"
+                 Text="{Binding Path=currentProduct.Length, Mode=TwoWay}"
                  Grid.Column="1"
                  Grid.Row="8"
+                 Style="{StaticResource textBoxStyle}"/>
+        <TextBlock Text="Height"
+                   Grid.Column="0"
+                   Grid.Row="9"
+                   HorizontalAlignment="Right"
+                   Style="{StaticResource fontStyle}"/>
+        <TextBox Width="100" 
+                 HorizontalAlignment="Left" 
+                 Text="{Binding Path=currentProduct.Height, Mode=TwoWay}"
+                 Grid.Column="1"
+                 Grid.Row="9"
                  Style="{StaticResource textBoxStyle}"/>
         <Button Command="{Binding Path=addProductCommand}" 
                 Width="100" 
                 Content="Add Product"
                 Grid.Column="1"
-                Grid.Row="9"
+                Grid.Row="10"
                 HorizontalAlignment="Left"
                  Foreground="#5DBEBE"/>
         <Button Command="{Binding Path=deleteProductCommand}" 
                 Width="100"  
                 Content="Delete product"
                 Grid.Column="1"
-                Grid.Row="9"
+                Grid.Row="10"
                 HorizontalAlignment="Center"
                 Foreground="#5DBEBE"/>
         <Button Command="{Binding Path=editProductCommand}" 
                 Width="100"  
                 Content="Edit product"
                 Grid.Column="1"
-                Grid.Row="9"
+                Grid.Row="10"
                 HorizontalAlignment="Right"
                 Foreground="#5DBEBE"/>
     </Grid>
